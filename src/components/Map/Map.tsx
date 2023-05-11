@@ -1,6 +1,11 @@
+import { useState } from "react";
+import { Improvement } from "../../models/Improvement";
 import "./Map.css";
 
 export function Map() {
+
+    const [improvement, setImprovement] = useState<Improvement[]>([]);
+
   return (
     <div>
       <div className="gameboard">
