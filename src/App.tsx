@@ -9,7 +9,6 @@ function App() {
     <div className="App">
       <Map></Map>
       <ResourceView></ResourceView>
-      
     </div>
   );
 }

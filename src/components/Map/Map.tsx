@@ -4,7 +4,7 @@ import "./Map.css";
 
 export function Map() {
 
-    const [improvement, setImprovement] = useState<Improvement[]>([]);
+  const [improvement, setImprovement] = useState<Improvement[]>([]);
 
   return (
     <div>
