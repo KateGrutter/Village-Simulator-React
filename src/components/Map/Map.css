@@ -1,0 +1,24 @@
+.gameboard {
+    margin-top: 50px;
+    width: 200px;
+    height: 250px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+  }
+  .gameboard-row {
+    width: 100%;
+    height: 14%;
+    display: flex;
+    
+  }
+  .tile {
+    height: 100%;
+    width: 16%;
+    border: 2px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+  }

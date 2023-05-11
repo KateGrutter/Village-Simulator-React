@@ -1,9 +1,10 @@
 import './ResourceView.css';
 import { Resource } from '../../models/Resource';
 import { useState } from 'react'
+import { ResourceLine } from './ResourceComponents/ResourceLine';
 
 export function ResourceView() {
-    const [resource, setResource] = useState<Resource[]>([
+    const [resources, setResources] = useState<Resource[]>([
         {
             type: "Lumber",
             amount: 5
@@ -22,6 +23,20 @@ export function ResourceView() {
         }
     ]);
     return (
-        <div></div>
+        <div>
+            <table>
+          <tr>
+            <th>Resource</th>
+            <th>Available</th>
+          </tr>
+            {
+                resources.map(resource => 
+                    <tr>
+                        <td><ResourceLine resources={resource}></ResourceLine></td>
+                    </tr>)
+            }
+
+          </table>
+        </div>
     )
 }
