@@ -25,3 +25,6 @@ export function ResourceView() {
         <div></div>
     )
 }
+
+
+//resourceView
