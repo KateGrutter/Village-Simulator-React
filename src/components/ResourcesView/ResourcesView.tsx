@@ -40,3 +40,78 @@ export function ResourceView() {
         </div>
     )
 }
+  
+
+
+
+
+
+
+
+
+/*export function ResourceView() {
+    const [resources, setResources] = useState<Resource[]>([
+        {
+            type: "Lumber",
+            amount: 5
+        },
+        {
+            type: "Grain",
+            amount: 5
+        },
+        {
+            type: "Water",
+            amount: 5
+        },
+        {
+            type: "Sheep",
+            amount: 1
+        }
+    ]);
+
+    return (
+        <div>
+          <table>
+            <thead>
+              <tr>
+                <th>Resource</th>
+                <th>Available</th>
+              </tr>
+            </thead>
+            <tbody>
+              {resources.map(resource => (
+                <tr key={resource.type}>
+                  <td>
+                    <ResourceLine resources={resource} />
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      );
+    }
+  /*  return (
+        <div>
+            <table>
+                <thead>
+                <tr>
+                    <th>Resource</th>
+                    <th>Available</th>
+                </tr>
+                </thead>
+                <tBody>
+                {
+                    resources.map(resource =>(
+                        <tr key={resource.type}>
+                            <td>
+                                <ResourceLine resources={resource}></ResourceLine>
+                                </td>
+                        </tr>)
+                )}
+                </tBody>
+            </table>
+        </div>
+    )
+}
+*/
