@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Improvement } from "../../../models/Improvement";
-import { ImprovementCosts } from "../../../store/ImprovementsCost";
+import { House, ImprovementCosts } from "../../../store/ImprovementsCost";
 
 
 //  interface AddImprovementDialogProps {
@@ -17,6 +17,8 @@ export function AddImprovementDialog(props: { improvement: Improvement, onClose:
 
   const [selectedImprovement, setSelectedImprovement] = useState(''); //sets improvement chosen from dropdown menu
 
+  const [type, setType] = useState('House')
+
   const handleOpen = () => {
     setOpen(!open);
   }; //opens drop down menu
@@ -25,6 +27,14 @@ export function AddImprovementDialog(props: { improvement: Improvement, onClose:
 
   const displayType = (ImprovementCosts.type) => {
     { ImprovementCosts.map(Imp) }
+  }
+
+  function getStats() {
+    return(
+      switch(? type === 'House') {
+        return 
+      }
+    ) 
   }
 
   // const handleItemClick = (improvementType: string) => {
@@ -55,6 +65,11 @@ export function AddImprovementDialog(props: { improvement: Improvement, onClose:
   //   onClose();
   // };
 
+
+  //when drop down clicked brings list of improvements
+  //when specific item clicked it brings up type, benefit (resourceProduced), and cost (cost)
+  //find() and STORE in variable, ex const House = Improvementcosts.find()
+  //?
   return (
     <div className="dropdown">
       <form onSubmit={handleSubmit}>
@@ -62,24 +77,26 @@ export function AddImprovementDialog(props: { improvement: Improvement, onClose:
         {open && (
           <ul className="menu">
             <li className="menu-item">
-              <button onClick={() => displayType()}>House</button>
+              <button onClick={() => setType("House")}>House</button>
             </li>
             <li className="menu-item">
-              <button onClick={() => displayType()}>Grain</button>
+              <button onClick={() => setType("Field")}>Field</button>
             </li>
             <li className="menu-item">
-              <button onClick={() => displayType()}>Sheep</button>
+              <button onClick={() => setType("Pasture")}>Pasture</button>
             </li>
             <li className="menu-item">
-              <button onClick={() => displayType()}>Lumber</button>
+              <button onClick={() => setType("Lumber Mill")}>Lumber Mill</button>
             </li>
             <li className="menu-item">
-              <button onClick={() => displayType()}>Water</button>
+              <button onClick={() => setType("Well")}>Well</button>
             </li>
           </ul>
         ) : null}
         {open ? <div>Is Open</div> : <div>Is Closed</div>}
-        <button onClick={onClose}>Cancel</button>
+        <div>Benefit className={}</div>
+        <div>Cost {}</div>
+        <button>Cancel</button>
         <button type="submit">Add</button>
       </form>
     </div>
