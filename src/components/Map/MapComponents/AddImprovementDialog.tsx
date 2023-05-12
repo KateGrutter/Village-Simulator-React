@@ -3,7 +3,9 @@ import { useState } from "react";
 import { Improvement } from "../../../models/Improvement";
 
 
-export function AddImprovementDialog(props: { onAddImprovement: (newImprovement: Improvement) => void }) {
+export function AddImprovementDialog() {
+
+    // props: { onAddImprovement: (newImprovement: Improvement) => void }
     const [open, setOpen] = useState(false);
 
     const [people, setPeople] = useState('');
@@ -22,14 +24,14 @@ export function AddImprovementDialog(props: { onAddImprovement: (newImprovement:
             <form onSubmit={e => {
                 e.preventDefault();
 
-                const newImprovement: Improvement = {
-                    type: type,
-                    level: +level,
-                    benefit: benefit,
-                    cost: cost
-                }
+                // const newImprovement: Improvement = {
+                //     type: type,
+                //     level: +level,
+                //     benefit: benefit,
+                //     cost: cost
+                // }
 
-                props.onAddImprovement(newImprovement);
+                // props.onAddImprovement(newImprovement);
             }}>
 
                 <button onClick={handleOpen}>Dropdown</button>
@@ -53,6 +55,9 @@ export function AddImprovementDialog(props: { onAddImprovement: (newImprovement:
 
                     </ul>
                 ) : null}
+
+                <button>Cancel</button>
+                <button>Add</button>
             </form>
         </div>
     );
