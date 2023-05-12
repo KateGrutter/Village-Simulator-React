@@ -95,7 +95,7 @@ export const ImprovementCosts: Improvement[] = [
 ]
 
 const improvements = [
-    { improvement: { type: 'Type 1', level: 1, resourceProduced: 'Resource 1', cost: 10 } },
+    { improvement: { type: 'House', level: 1, resourceProduced: 'Resource 1', cost: 10 } },
 
 // export const House: Improvement = {
 //     type: 'House',
