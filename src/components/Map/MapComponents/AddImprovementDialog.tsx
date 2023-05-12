@@ -1,79 +1,90 @@
 import { useState } from "react";
 import { Improvement } from "../../../models/Improvement";
+import { ImprovementCosts } from "../../../store/ImprovementsCost";
 
- interface AddImprovementDialogProps {
-  onClose: () => void;
-  onAddImprovement: (newImprovement: Improvement) => void;
-  selectedTileIndex: number;
-}
 
-export function AddImprovementDialog({ onClose, onAddImprovement, selectedTileIndex }: AddImprovementDialogProps) {
-  const [open, setOpen] = useState(false);
-  const [selectedImprovement, setSelectedImprovement] = useState('');
+//  interface AddImprovementDialogProps {
+//   onClose: () => void;
+//   onAddImprovement: (newImprovement: Improvement) => void;
+//   selectedTileIndex: number;
+// }
+
+//add selectedTileIndex back callback props when ready ( directly down below)
+// do we want to also call the interface : AddImprovementDialogProps?
+
+export function AddImprovementDialog(props: { improvement: Improvement, onClose: (improvement: Improvement) => void, onAddImprovement: (improvement: Improvement) => void }) {
+  const [open, setOpen] = useState(false); //drop down menu useState
+
+  const [selectedImprovement, setSelectedImprovement] = useState(''); //sets improvement chosen from dropdown menu
 
   const handleOpen = () => {
     setOpen(!open);
-  };
+  }; //opens drop down menu
 
-  const handleItemClick = (improvementType: string) => {
-    setSelectedImprovement(improvementType);
-    setOpen(false);
-  };
+  //displays improvement type in form
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const displayType = (ImprovementCosts.type) => {
+    { ImprovementCosts.map(Imp) }
+  }
 
-    const newImprovement: Improvement = {
-      type: selectedImprovement,
-      level: 1,
-      resourceProduced: {
-        type: selectedImprovement,
-        amount: 1
-        },
-        cost: [
-            {
-                type: selectedImprovement,
-                amount: 1
-            }
-        ]
-      // Add other properties as needed
-    };
+  // const handleItemClick = (improvementType: string) => {
+  //   setSelectedImprovement(improvementType);
+  //   setOpen(false);
+  // }; //handles tiles
 
-    onAddImprovement(newImprovement);
-    onClose();
-  };
+  // const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  //   e.preventDefault();
+
+  //   const newImprovement: Improvement = {
+  //     type: selectedImprovement,
+  //     level: 1,
+  //     resourceProduced: {
+  //       type: selectedImprovement,
+  //       amount: 1
+  //     },
+  //     cost: [
+  //       {
+  //         type: selectedImprovement,
+  //         amount: 1
+  //       }
+  //     ]
+  //     // Add other properties as needed
+  //   };
+
+  //   onAddImprovement(newImprovement);
+  //   onClose();
+  // };
 
   return (
     <div className="dropdown">
       <form onSubmit={handleSubmit}>
-        <button onClick={handleOpen}>Dropdown</button>
+        <button onClick={handleOpen}>Improvement Type</button>
         {open && (
           <ul className="menu">
             <li className="menu-item">
-              <button onClick={() => handleItemClick("People")}>People</button>
+              <button onClick={() => displayType()}>House</button>
             </li>
             <li className="menu-item">
-              <button onClick={() => handleItemClick("Grain")}>Grain</button>
+              <button onClick={() => displayType()}>Grain</button>
             </li>
             <li className="menu-item">
-              <button onClick={() => handleItemClick("Sheep")}>Sheep</button>
+              <button onClick={() => displayType()}>Sheep</button>
             </li>
             <li className="menu-item">
-              <button onClick={() => handleItemClick("Lumber")}>Lumber</button>
+              <button onClick={() => displayType()}>Lumber</button>
             </li>
             <li className="menu-item">
-              <button onClick={() => handleItemClick("Water")}>Water</button>
+              <button onClick={() => displayType()}>Water</button>
             </li>
           </ul>
-        )}
-
+        ) : null}
+        {open ? <div>Is Open</div> : <div>Is Closed</div>}
         <button onClick={onClose}>Cancel</button>
         <button type="submit">Add</button>
       </form>
     </div>
   );
 }
-
 
 
 
