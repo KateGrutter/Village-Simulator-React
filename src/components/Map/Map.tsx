@@ -50,77 +50,77 @@ export function Map() {
     <div className="gameboard">
       <div className="gameboard-row">
         
-          <Tile/>
+          <Tile value={1} onTileClick={}/>
       
         <div className="tile">
-          <Tile/>
+          <Tile value={2}/>
         </div>
         <div className="tile">
-        <Tile/>
+        <Tile value={3}/>
         </div> <div className="tile">
-        <Tile/>
+        <Tile value={4}/>
         </div> <div className="tile">
-        <Tile/>
+        <Tile value={5}/>
         </div>
       </div>
       <div className="gameboard-row">
         <div className="tile">
-        <Tile/>
+        <Tile value={6}/>
         </div>
         <div className="tile">
-        <Tile/>
+        <Tile value={7}/>
         </div>
         <div className="tile">
-        <Tile/>
+        <Tile value={8}/>
         </div> <div className="tile">
-        <Tile/>
+        <Tile value={9}/>
         </div> <div className="tile">
-        <Tile/>
+        <Tile value={10}/>
         </div>
       </div>
       <div className="gameboard-row">
         <div className="tile">
-        <Tile/>
+        <Tile value={11}/>
         </div>
         <div className="tile">
-        <Tile/>
+        <Tile value={12}/>
         </div>
         <div className="tile">
-        <Tile/>
+        <Tile value={13}/>
         </div> <div className="tile">
-        <Tile/>
+        <Tile value={14}/>
         </div> <div className="tile">
-        <Tile/>
+        <Tile value={15}/>
         </div>
       </div>
       <div className="gameboard-row">
         <div className="tile">
-        <Tile/>
+        <Tile value={16}/>
         </div>
         <div className="tile">
-        <Tile/>
+        <Tile value={17}/>
         </div>
         <div className="tile">
-        <Tile/>
+        <Tile value={18}/>
         </div> <div className="tile">
-        <Tile/>
+        <Tile value={19}/>
         </div> <div className="tile">
-        <Tile/>
+        <Tile value={20}/>
         </div>
       </div>
       <div className="gameboard-row">
         <div className="tile">
-        <Tile/>
+        <Tile value={21}/>
         </div>
         <div className="tile">
-        <Tile/>
+        <Tile value={22}/>
         </div>
         <div className="tile">
-        <Tile/>
+        <Tile value={23}/>
         </div> <div className="tile">
-        <Tile/>
+        <Tile value={24}/>
         </div> <div className="tile">
-        <Tile/>
+        <Tile value={25}/>
         </div>
       </div>
       {/* {showDialog && (

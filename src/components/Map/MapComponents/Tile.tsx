@@ -4,7 +4,7 @@ import { EditImprovementDialog } from "./EditImprovementDialog";
 import { AddImprovementDialog } from "./AddImprovementDialog";
 
 
-export function Tile() {
+export function Tile(props: {value: number, onTileClick:() => void}) {
     return (
         <div className="tile">
             
