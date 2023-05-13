@@ -1,12 +1,14 @@
 import { useState } from "react";
 import { Improvement } from "../../../models/Improvement";
 import { EditImprovementDialog } from "./EditImprovementDialog";
+import { AddImprovementDialog } from "./AddImprovementDialog";
 
 
-export function Tile(props: {improvement: Improvement, onClose: (improvement: Improvement) => void, onUpgrade: (improvement: Improvement) => void, onDowngrade: (improvement: Improvement) => void, onRemove: (improvement: Improvement) => void}) {
+export function Tile(props: { improvement: Improvement, onClose: (improvement: Improvement) => void, onUpgrade: (improvement: Improvement) => void, onDowngrade: (improvement: Improvement) => void, onRemove: (improvement: Improvement) => void, onAdd: (improvement: Improvement) => void }) {
     return (
         <div>
             <EditImprovementDialog improvement={props.improvement} onUpgrade={props.onUpgrade} onDowngrade={props.onDowngrade} onClose={props.onClose} onRemove={props.onRemove}></EditImprovementDialog>
+            <AddImprovementDialog onAdd={props.onAdd} onClose={props.onClose} improvement={props.improvement} />
         </div>
     )
 }

@@ -42,9 +42,11 @@ function App() {
 
   return (
     <div className="App">
-      <Map onTileClick={handleTileClick} improvements={improvements} resources={resources}></Map>
-      <ResourceView></ResourceView>
-      {/* <AddImprovementDialog onAdd={newImprovement => setResources([...resources, newContact])}></AddImprovementDialog> */}
+      {/* <Map onTileClick={handleTileClick} improvements={improvements} resources={resources}></Map>
+      <ResourceView></ResourceView>*/}
+      <AddImprovementDialog></AddImprovementDialog>
+
+      {/* onAdd={newImprovement => setResources([...resources, newContact])} */}
     </div>
   );
 }
