@@ -2,7 +2,6 @@ import { useState } from "react";
 import { Improvement } from "../../../models/Improvement";
 import { ImprovementCosts } from "../../../store/ImprovementsCost";
 
-
 //  interface AddImprovementDialogProps {
 //   onClose: () => void;
 //   onAddImprovement: (newImprovement: Improvement) => void;
@@ -13,27 +12,67 @@ import { ImprovementCosts } from "../../../store/ImprovementsCost";
 // do we want to also call the interface : AddImprovementDialogProps?
 
 //(props: { improvement: Improvement, onClose: (improvement: Improvement) => void, onAddImprovement: (improvement: Improvement) => void }
+interface AddImprovementDialogProps {
+  onClose: (improvement?: Improvement) => void;
+  onAdd: (improvement: Improvement) => void;
+  improvement: Improvement | undefined;
+}
 
-export function AddImprovementDialog(props: { improvement: Improvement, onClose: (improvement: Improvement) => void, onAdd: (improvement: Improvement) => void }) {
+export function AddImprovementDialog(props: AddImprovementDialogProps) {
+  const [selectedImprovement, setSelectedImprovement] = useState<Improvement | undefined>(props.improvement);
 
-  const [selectedImprovement, setSelectedImprovement] = useState<Improvement | undefined>(undefined); //sets improvement chosen from dropdown menu
+  const handleCancel = () => {
+    setSelectedImprovement(undefined);
+    props.onClose();
+  };
 
-  const [type, setType] = useState('House')
-
-
+  const handleAdd = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (selectedImprovement) {
+      props.onAdd(selectedImprovement);
+    }
+    setSelectedImprovement(undefined);
+    props.onClose();
+  };
   return (
-    <div className="dropdown">
-      <form>
-        <select onChange={e => setSelectedImprovement(ImprovementCosts.find(improvement => e.target.value === improvement.type))} name="cars" id="cars">
-          {ImprovementCosts.map(improvement => <option value={improvement.type}>{improvement.type}</option>)}
+    <div className="add-improvement-dialog">
+      <form onSubmit={handleAdd}>
+        <select
+          onChange={(e) =>
+            setSelectedImprovement(
+              ImprovementCosts.find(
+                (improvement) => e.target.value === improvement.type
+              )
+            )
+          }
+          name="cars"
+          id="cars"
+        >
+          <option disabled selected>
+            Please select a type
+          </option>
+          {ImprovementCosts.map((improvement) => (
+            <option key={improvement.type} value={improvement.type}>
+              {improvement.type}
+            </option>
+          ))}
         </select>
-        <div>Benefit {selectedImprovement ? selectedImprovement.resourceProduced.amount : ''} {selectedImprovement ? selectedImprovement.resourceProduced.type : ''} </div>
-        <div>Cost {selectedImprovement.cost.map((cost, index) => (
-          <li key={index}>
-            {cost.amount} {cost.type}
-          </li>))}
+        <div>
+          Benefit{" "}
+          {selectedImprovement ? selectedImprovement.resourceProduced.amount : ""}{" "}
+          {selectedImprovement ? selectedImprovement.resourceProduced.type : ""}{" "}
         </div>
-        <button>Cancel</button>
+        <div>
+          Cost{" "}
+          {selectedImprovement?.cost.map((cost, index) => (
+            <li key={index}>
+              {cost.amount} {cost.type}
+            </li>
+          ))}
+        </div>
+        <button type="button" onClick={handleCancel}>
+          Cancel
+        </button>
         <button type="submit">Add</button>
       </form>
     </div>
@@ -46,16 +85,6 @@ export function AddImprovementDialog(props: { improvement: Improvement, onClose:
 
 //cost items: selectedImprovement.cost.map to show cost
 //cost.amount cost.type
-
-
-
-
-
-
-
-
-
-
 
 /*import { Map } from "../Map";
 import { useState } from "react";

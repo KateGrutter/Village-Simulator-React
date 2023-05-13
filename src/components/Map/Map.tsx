@@ -4,47 +4,324 @@ import "./Map.css";
 import { MapProps } from "./MapComponents/MapProps";
 import { AddImprovementDialog } from "./MapComponents/AddImprovementDialog";
 import { House } from "../../store/ImprovementsCost";
-import { Tile } from "./MapComponents/Tile";
+import Tile from "./MapComponents/Tile";
 
 export function Map() {
-  <div>
-    <div className="board-row">
-      <Tile />
-      <Tile />
-      <Tile />
-      <Tile />
-      <Tile />
+  const initialImprovement: Improvement = {
+    // Set initial improvement properties
+    type: "House",
+    level: 1,
+    resourceProduced: {
+      type: "Resource",
+      amount: 0,
+    },
+    // Add other improvement properties
+    cost: [],
+  };
+
+  const handleUpgrade = (improvement: Improvement) => {
+    // Handle the upgrade logic here
+    console.log("Upgrade improvement:", improvement);
+  };
+
+  const handleDowngrade = (improvement: Improvement) => {
+    // Handle the downgrade logic here
+    console.log("Downgrade improvement:", improvement);
+  };
+
+  const handleRemove = (improvement: Improvement) => {
+    // Handle the remove logic here
+    console.log("Remove improvement:", improvement);
+  };
+
+  const handleAdd = (improvement: Improvement) => {
+    // Handle the add logic here
+    console.log("Add improvement:", improvement);
+  };
+
+  const handleClose = (improvement: Improvement) => {
+    // Handle the close logic here
+    console.log("Close improvement dialog:", improvement);
+  };
+  const [showDialog, setShowDialog] = useState(false);
+  const [selectedTile, setSelectedTile] = useState<Improvement | undefined>(undefined);
+
+  const handleTileClick = (improvement: Improvement) => {
+    setSelectedTile(improvement);
+    setShowDialog(true);
+  };
+  const handleDialogClose = () => {
+    setShowDialog(false);
+    setSelectedTile(undefined);
+  };
+  return (
+    <div className="gameboard">
+      <div className="gameboard-row">
+        <div className="tile">
+          <Tile
+            improvement={initialImprovement}
+            onClose={handleClose}
+            onUpgrade={handleUpgrade}
+            onDowngrade={handleDowngrade}
+            onRemove={handleRemove}
+            onAdd={handleTileClick}
+          />
+        </div>
+        <div className="tile">
+          <Tile
+            improvement={initialImprovement}
+            onClose={handleClose}
+            onUpgrade={handleUpgrade}
+            onDowngrade={handleDowngrade}
+            onRemove={handleRemove}
+            onAdd={handleTileClick}
+          />
+        </div>
+        <div className="tile">
+          <Tile
+            improvement={initialImprovement}
+            onClose={handleClose}
+            onUpgrade={handleUpgrade}
+            onDowngrade={handleDowngrade}
+            onRemove={handleRemove}
+            onAdd={handleTileClick}
+          />
+        </div> <div className="tile">
+          <Tile
+            improvement={initialImprovement}
+            onClose={handleClose}
+            onUpgrade={handleUpgrade}
+            onDowngrade={handleDowngrade}
+            onRemove={handleRemove}
+            onAdd={handleTileClick}
+          />
+        </div> <div className="tile">
+          <Tile
+            improvement={initialImprovement}
+            onClose={handleClose}
+            onUpgrade={handleUpgrade}
+            onDowngrade={handleDowngrade}
+            onRemove={handleRemove}
+            onAdd={handleTileClick}
+          />
+        </div>
+      </div>
+      <div className="gameboard-row">
+        <div className="tile">
+          <Tile
+            improvement={initialImprovement}
+            onClose={handleClose}
+            onUpgrade={handleUpgrade}
+            onDowngrade={handleDowngrade}
+            onRemove={handleRemove}
+            onAdd={handleTileClick}
+          />
+        </div>
+        <div className="tile">
+          <Tile
+            improvement={initialImprovement}
+            onClose={handleClose}
+            onUpgrade={handleUpgrade}
+            onDowngrade={handleDowngrade}
+            onRemove={handleRemove}
+            onAdd={handleTileClick}
+          />
+        </div>
+        <div className="tile">
+          <Tile
+            improvement={initialImprovement}
+            onClose={handleClose}
+            onUpgrade={handleUpgrade}
+            onDowngrade={handleDowngrade}
+            onRemove={handleRemove}
+            onAdd={handleTileClick}
+          />
+        </div> <div className="tile">
+          <Tile
+            improvement={initialImprovement}
+            onClose={handleClose}
+            onUpgrade={handleUpgrade}
+            onDowngrade={handleDowngrade}
+            onRemove={handleRemove}
+            onAdd={handleTileClick}
+          />
+        </div> <div className="tile">
+          <Tile
+            improvement={initialImprovement}
+            onClose={handleClose}
+            onUpgrade={handleUpgrade}
+            onDowngrade={handleDowngrade}
+            onRemove={handleRemove}
+            onAdd={handleTileClick}
+          />
+        </div>
+      </div>
+      <div className="gameboard-row">
+        <div className="tile">
+          <Tile
+            improvement={initialImprovement}
+            onClose={handleClose}
+            onUpgrade={handleUpgrade}
+            onDowngrade={handleDowngrade}
+            onRemove={handleRemove}
+            onAdd={handleTileClick}
+          />
+        </div>
+        <div className="tile">
+          <Tile
+            improvement={initialImprovement}
+            onClose={handleClose}
+            onUpgrade={handleUpgrade}
+            onDowngrade={handleDowngrade}
+            onRemove={handleRemove}
+            onAdd={handleTileClick}
+          />
+        </div>
+        <div className="tile">
+          <Tile
+            improvement={initialImprovement}
+            onClose={handleClose}
+            onUpgrade={handleUpgrade}
+            onDowngrade={handleDowngrade}
+            onRemove={handleRemove}
+            onAdd={handleTileClick}
+          />
+        </div> <div className="tile">
+          <Tile
+            improvement={initialImprovement}
+            onClose={handleClose}
+            onUpgrade={handleUpgrade}
+            onDowngrade={handleDowngrade}
+            onRemove={handleRemove}
+            onAdd={handleTileClick}
+          />
+        </div> <div className="tile">
+          <Tile
+            improvement={initialImprovement}
+            onClose={handleClose}
+            onUpgrade={handleUpgrade}
+            onDowngrade={handleDowngrade}
+            onRemove={handleRemove}
+            onAdd={handleTileClick}
+          />
+        </div>
+      </div>
+      <div className="gameboard-row">
+        <div className="tile">
+          <Tile
+            improvement={initialImprovement}
+            onClose={handleClose}
+            onUpgrade={handleUpgrade}
+            onDowngrade={handleDowngrade}
+            onRemove={handleRemove}
+            onAdd={handleTileClick}
+          />
+        </div>
+        <div className="tile">
+          <Tile
+            improvement={initialImprovement}
+            onClose={handleClose}
+            onUpgrade={handleUpgrade}
+            onDowngrade={handleDowngrade}
+            onRemove={handleRemove}
+            onAdd={handleTileClick}
+          />
+        </div>
+        <div className="tile">
+          <Tile
+            improvement={initialImprovement}
+            onClose={handleClose}
+            onUpgrade={handleUpgrade}
+            onDowngrade={handleDowngrade}
+            onRemove={handleRemove}
+            onAdd={handleTileClick}
+          />
+        </div> <div className="tile">
+          <Tile
+            improvement={initialImprovement}
+            onClose={handleClose}
+            onUpgrade={handleUpgrade}
+            onDowngrade={handleDowngrade}
+            onRemove={handleRemove}
+            onAdd={handleTileClick}
+          />
+        </div> <div className="tile">
+          <Tile
+            improvement={initialImprovement}
+            onClose={handleClose}
+            onUpgrade={handleUpgrade}
+            onDowngrade={handleDowngrade}
+            onRemove={handleRemove}
+            onAdd={handleTileClick}
+          />
+        </div>
+      </div>
+      <div className="gameboard-row">
+        <div className="tile">
+          <Tile
+            improvement={initialImprovement}
+            onClose={handleClose}
+            onUpgrade={handleUpgrade}
+            onDowngrade={handleDowngrade}
+            onRemove={handleRemove}
+            onAdd={handleTileClick}
+          />
+        </div>
+        <div className="tile">
+          <Tile
+            improvement={initialImprovement}
+            onClose={handleClose}
+            onUpgrade={handleUpgrade}
+            onDowngrade={handleDowngrade}
+            onRemove={handleRemove}
+            onAdd={handleTileClick}
+          />
+        </div>
+        <div className="tile">
+          <Tile
+            improvement={initialImprovement}
+            onClose={handleClose}
+            onUpgrade={handleUpgrade}
+            onDowngrade={handleDowngrade}
+            onRemove={handleRemove}
+            onAdd={handleTileClick}
+          />
+        </div> <div className="tile">
+          <Tile
+            improvement={initialImprovement}
+            onClose={handleClose}
+            onUpgrade={handleUpgrade}
+            onDowngrade={handleDowngrade}
+            onRemove={handleRemove}
+            onAdd={handleTileClick}
+          />
+        </div> <div className="tile">
+          <Tile
+            improvement={initialImprovement}
+            onClose={handleClose}
+            onUpgrade={handleUpgrade}
+            onDowngrade={handleDowngrade}
+            onRemove={handleRemove}
+            onAdd={handleTileClick}
+          />
+        </div>
+      </div>
+        {showDialog && (
+        <AddImprovementDialog
+          improvement={selectedTile}
+          onClose={handleDialogClose}
+          //onUpgrade={handleUpgrade}
+         // onDowngrade={handleDowngrade}
+          //onRemove={handleRemove}
+          onAdd={handleAdd}
+        />
+      )}  
     </div>
-    <div className="board-row">
-      <Tile />
-      <Tile />
-      <Tile />
-      <Tile />
-      <Tile />
-    </div>
-    <div className="board-row">
-      <Tile />
-      <Tile />
-      <Tile />
-      <Tile />
-      <Tile />
-    </div>
-    <div className="board-row">
-      <Tile />
-      <Tile />
-      <Tile />
-      <Tile />
-      <Tile />
-    </div>
-    <div className="board-row">
-      <Tile />
-      <Tile />
-      <Tile />
-      <Tile />
-      <Tile />
-    </div>
-  </div>;
+    
+  );
 }
+      
+
 
 // export function Map({ onTileClick }: MapProps) {
 //   const [improvements, setImprovements] = useState<Improvement[][]>([]);
