@@ -1,6 +1,3 @@
-// import { Improvement } from "../models/Improvement";
-// import { Resource } from "../models/Resource";
-
 import { Improvement } from "../models/Improvement"
 
 
