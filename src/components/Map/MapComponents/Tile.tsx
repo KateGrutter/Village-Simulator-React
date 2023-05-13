@@ -4,10 +4,10 @@ import { EditImprovementDialog } from "./EditImprovementDialog";
 import { AddImprovementDialog } from "./AddImprovementDialog";
 
 
-export function Tile(props: {value: number, onTileClick:() => void}) {
+export function Tile(props: {value: number}) {
     return (
         <div className="tile">
-            
+        
         </div>
     )
 }

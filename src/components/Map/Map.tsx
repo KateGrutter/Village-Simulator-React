@@ -5,10 +5,7 @@ import { AddImprovementDialog } from "./MapComponents/AddImprovementDialog";
 import { Tile } from "./MapComponents/Tile";
 
 export function Map() {
-
-  const [improvement, setImprovement] = useState<Improvement | null>(null)
-
-
+  const [improvement, setImprovement] = useState<Improvement | null>(null);
 
   const handleUpgrade = (improvement: Improvement) => {
     // Handle the upgrade logic here
@@ -35,11 +32,13 @@ export function Map() {
     console.log("Close improvement dialog:", improvement);
   };
   const [showDialog, setShowDialog] = useState(false);
-  const [selectedTile, setSelectedTile] = useState<Improvement | undefined>(undefined);
+  const [selectedTile, setSelectedTile] = useState<Improvement | undefined>(
+    undefined
+  );
 
-  const handleTileClick = (improvement: Improvement) => {
-    setSelectedTile(improvement);
-    setShowDialog(true);
+  const handleTileClick = () => {
+    return console.log('clicked')
+    
   };
   const handleDialogClose = () => {
     setShowDialog(false);
@@ -49,78 +48,88 @@ export function Map() {
   return (
     <div className="gameboard">
       <div className="gameboard-row">
-        
-          <Tile value={1} onTileClick={}/>
-      
-        <div className="tile">
-          <Tile value={2}/>
+        <div className="tile" defaultValue={1} onClick={handleTileClick}>
+        <Tile value={1} />
         </div>
-        <div className="tile">
-        <Tile value={3}/>
-        </div> <div className="tile">
-        <Tile value={4}/>
-        </div> <div className="tile">
-        <Tile value={5}/>
+        <div className="tile" onClick={handleTileClick}>
+        <Tile value={2} />
         </div>
-      </div>
-      <div className="gameboard-row">
-        <div className="tile">
-        <Tile value={6}/>
-        </div>
-        <div className="tile">
-        <Tile value={7}/>
-        </div>
-        <div className="tile">
-        <Tile value={8}/>
-        </div> <div className="tile">
-        <Tile value={9}/>
-        </div> <div className="tile">
-        <Tile value={10}/>
+        <div className="tile" onClick={handleTileClick}>
+          <Tile value={3} />
+        </div>{" "}
+        <div className="tile" onClick={handleTileClick}>
+          <Tile value={4} />
+        </div>{" "}
+        <div className="tile" onClick={handleTileClick}>
+          <Tile value={5} />
         </div>
       </div>
       <div className="gameboard-row">
-        <div className="tile">
-        <Tile value={11}/>
+      <div className="tile" onClick={handleTileClick}>
+          <Tile value={6} />
         </div>
-        <div className="tile">
-        <Tile value={12}/>
+        <div className="tile" onClick={handleTileClick}>
+          <Tile value={7} />
         </div>
-        <div className="tile">
-        <Tile value={13}/>
-        </div> <div className="tile">
-        <Tile value={14}/>
-        </div> <div className="tile">
-        <Tile value={15}/>
-        </div>
-      </div>
-      <div className="gameboard-row">
-        <div className="tile">
-        <Tile value={16}/>
-        </div>
-        <div className="tile">
-        <Tile value={17}/>
-        </div>
-        <div className="tile">
-        <Tile value={18}/>
-        </div> <div className="tile">
-        <Tile value={19}/>
-        </div> <div className="tile">
-        <Tile value={20}/>
+        <div className="tile" onClick={handleTileClick}>
+          <Tile value={8} />
+        </div>{" "}
+        <div className="tile" onClick={handleTileClick}>
+          <Tile value={9} />
+        </div>{" "}
+        <div className="tile" onClick={handleTileClick}>
+          <Tile value={10} />
         </div>
       </div>
       <div className="gameboard-row">
-        <div className="tile">
-        <Tile value={21}/>
+      <div className="tile" onClick={handleTileClick}>
+          <Tile value={11} />
         </div>
-        <div className="tile">
-        <Tile value={22}/>
+        <div className="tile" onClick={handleTileClick}>
+          <Tile value={12} />
         </div>
-        <div className="tile">
-        <Tile value={23}/>
-        </div> <div className="tile">
-        <Tile value={24}/>
-        </div> <div className="tile">
-        <Tile value={25}/>
+        <div className="tile" onClick={handleTileClick}>
+          <Tile value={13} />
+        </div>{" "}
+        <div className="tile" onClick={handleTileClick}>
+          <Tile value={14} />
+        </div>{" "}
+        <div className="tile" onClick={handleTileClick}>
+          <Tile value={15} />
+        </div>
+      </div>
+      <div className="gameboard-row">
+      <div className="tile" onClick={handleTileClick}>
+          <Tile value={16} />
+        </div>
+        <div className="tile" onClick={handleTileClick}>
+          <Tile value={17} />
+        </div>
+        <div className="tile" onClick={handleTileClick}>
+          <Tile value={18} />
+        </div>{" "}
+        <div className="tile" onClick={handleTileClick}>
+          <Tile value={19} />
+        </div>{" "}
+        <div className="tile" onClick={handleTileClick}>
+          <Tile value={20} />
+        </div>
+      </div>
+      <div className="gameboard-row">
+      <div className="tile" onClick={handleTileClick}>
+          <Tile value={21} />
+        </div>
+        <div className="tile" onClick={handleTileClick}>
+          <Tile value={22} />
+        </div>
+        <div className="tile" onClick={handleTileClick}>
+          <Tile value={23} />
+        </div>{" "}
+        <div className="tile" onClick={handleTileClick}>
+          <Tile value={24} />
+        </div>{" "}
+        <div className="tile" onClick={handleTileClick}>
+          <Tile value={25} />
         </div>
       </div>
       {/* {showDialog && (
@@ -134,7 +143,5 @@ export function Map() {
         />
       )} */}
     </div>
-
   );
 }
-
