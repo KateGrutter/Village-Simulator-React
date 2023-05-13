@@ -10,14 +10,14 @@ import { AddImprovementDialog } from "./components/Map/MapComponents/AddImprovem
 // import { stockUpdate } from "./functions/ResourcesFunctions";
 
 function App() {
-  const handleTileClick = (tileIndex: number) => {
-    // Handle the tile click event
-    console.log("Tile clicked in parent component:", tileIndex);
-  };
-  const improvements: Improvement[] = [];
-  // const resources: Resource[] = [];
-  // onUpgrade
-  // onDowngrade
+  // const handleTileClick = (tileIndex: number) => {
+  //   // Handle the tile click event
+  //   console.log("Tile clicked in parent component:", tileIndex);
+  // };
+  // const improvements: Improvement[] = [];
+  // // const resources: Resource[] = [];
+  // // onUpgrade
+  // // onDowngrade
 
   const [resources, setResources] = useState<Resource[]>([
     {
@@ -44,7 +44,7 @@ function App() {
     <div className="App">
       {/* <Map onTileClick={handleTileClick} improvements={improvements} resources={resources}></Map>
       <ResourceView></ResourceView>*/}
-      <AddImprovementDialog></AddImprovementDialog>
+      {/* <AddImprovementDialog></AddImprovementDialog> */}
 
       {/* onAdd={newImprovement => setResources([...resources, newContact])} */}
     </div>
