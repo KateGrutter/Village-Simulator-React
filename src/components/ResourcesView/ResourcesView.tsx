@@ -1,5 +1,5 @@
 import './ResourceView.css';
-import { Resource } from '../../models/Resource';
+import { Improvement } from '../../models/Improvement';
 import { useState } from 'react'
 import { ResourceLine } from './ResourceComponents/ResourceLine';
 

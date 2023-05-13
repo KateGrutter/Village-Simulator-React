@@ -1,9 +1,11 @@
-import { Resource } from "./Resource";
+interface Resource {
+    type: string;
+    amount: number;
+}
 
 export interface Improvement {
-    type: string; //improvement
+    type: string;
     level: number;
-    resourceProduced: Resource; //may be referred to as benefit
+    resourceProduced: Resource;
     cost: Resource[]
 }
-  

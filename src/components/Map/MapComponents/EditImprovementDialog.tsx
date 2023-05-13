@@ -13,9 +13,9 @@ export function EditImprovementDialog(props: { improvement: Improvement, onClose
                 <div> Cost {
                     props.improvement.cost.map((cost, index) => (
                         <li key={index}>
-                          {cost.amount} {cost.type}
+                            {cost.amount} {cost.type}
                         </li>))}
-                        </div>
+                </div>
             </div>
             <div className="buttons-container">
                 <button>Close</button>

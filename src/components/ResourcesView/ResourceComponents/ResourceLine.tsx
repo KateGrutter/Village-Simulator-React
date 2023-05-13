@@ -1,10 +1,10 @@
-import { Resource } from "../../../models/Resource";
+import { Improvement } from "../../../models/Improvement"
 
-export function ResourceLine (props: {resources: Resource}) {
+export function ResourceLine(props: { resources: Resource }) {
 
-    return(
+    return (
         <div>
-          
+
             <td>{props.resources.icon}{props.resources.type}</td>
             <td>{props.resources.amount}</td>
         </div>

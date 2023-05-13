@@ -5,9 +5,7 @@ import { useState } from "react";
 import { Map } from "./components/Map/Map"
 import { ResourceView } from "./components/ResourcesView/ResourcesView";
 import { Improvement } from "./models/Improvement";
-import { Resource } from "./models/Resource";
-import { AddImprovementDialog } from "./components/Map/MapComponents/AddImprovementDialog";
-// import { stockUpdate } from "./functions/ResourcesFunctions";
+import { ImprovementCosts } from "./store/ImprovementsCost";
 
 function App() {
   // const handleTileClick = (tileIndex: number) => {
@@ -15,9 +13,6 @@ function App() {
   //   console.log("Tile clicked in parent component:", tileIndex);
   // };
   // const improvements: Improvement[] = [];
-  // // const resources: Resource[] = [];
-  // // onUpgrade
-  // // onDowngrade
 
   const [resources, setResources] = useState<Resource[]>([
     {
@@ -38,14 +33,28 @@ function App() {
     }
   ]);
 
+  function handleResourceUpdate(i: number) {
+    setResources(prevResources => {
+      const prevResource = prevResources[i];
+      let newResource = { ...prevResource, newResource: !prevResource };
+
+      return [
+        ...prevResources.slice(0, i), newResource,
+        ...prevResources.slice(i + 1)];
+    })
+  }
+
+  function Arithmetic() {
+    // if (selectedImprovement.cost.type === Resource[].type && selectedImprovement.cost.amount > Resource[].amount) {
+    //   const newResourceAmount = selectedImprovement.cost.amount - resource.amount;
+    //   selectedImprovement.resourceProduced.amount + resource.amount;
+  }
 
 
   return (
     <div className="App">
       {/* <Map onTileClick={handleTileClick} improvements={improvements} resources={resources}></Map>
       <ResourceView></ResourceView>*/}
-      {/* <AddImprovementDialog></AddImprovementDialog> */}
-
       {/* onAdd={newImprovement => setResources([...resources, newContact])} */}
     </div>
   );

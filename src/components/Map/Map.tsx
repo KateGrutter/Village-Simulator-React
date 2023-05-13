@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Improvement } from "../../models/Improvement";
+import { Improvement } from "../../archive/Improvement";
 import "./Map.css";
 import { MapProps } from "./MapComponents/MapProps";
 import { AddImprovementDialog } from "./MapComponents/AddImprovementDialog";

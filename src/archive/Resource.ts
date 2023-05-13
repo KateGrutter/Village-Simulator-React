@@ -1,7 +1,7 @@
 
-export interface Resource {
+interface Resource {
     type: string;
     amount: number;
     icon?: string
 }
-  
+

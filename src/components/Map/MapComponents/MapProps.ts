@@ -1,6 +1,4 @@
-import { Improvement } from '../../../models/Improvement';
-import { Resource } from '../../../models/Resource';
-
+import { Improvement } from "../../../models/Improvement";
 export interface MapProps {
   onTileClick: (tileIndex: number) => void;
   improvements: Improvement[];
