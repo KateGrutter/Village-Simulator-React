@@ -1,4 +1,4 @@
-import { Improvement } from "../../../models/Improvement"
+import { Resource } from "../../../models/Improvement"
 
 export function ResourceLine(props: { resources: Resource }) {
 

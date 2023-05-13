@@ -6,6 +6,7 @@ import { Map } from "./components/Map/Map"
 import { ResourceView } from "./components/ResourcesView/ResourcesView";
 import { Improvement } from "./models/Improvement";
 import { ImprovementCosts } from "./store/ImprovementsCost";
+import { Resource } from "./models/Improvement";
 
 function App() {
   // const handleTileClick = (tileIndex: number) => {
@@ -53,9 +54,7 @@ function App() {
 
   return (
     <div className="App">
-      {/* <Map onTileClick={handleTileClick} improvements={improvements} resources={resources}></Map>
-      <ResourceView></ResourceView>*/}
-      {/* onAdd={newImprovement => setResources([...resources, newContact])} */}
+      <Map></Map>
     </div>
   );
 }

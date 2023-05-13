@@ -6,8 +6,8 @@ import { AddImprovementDialog } from "./AddImprovementDialog";
 
 export function Tile() {
     return (
-        <div>
-
+        <div className="tile">
+            
         </div>
     )
 }

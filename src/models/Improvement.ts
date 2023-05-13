@@ -1,6 +1,7 @@
-interface Resource {
+export interface Resource {
     type: string;
     amount: number;
+    icon?: string
 }
 
 export interface Improvement {
