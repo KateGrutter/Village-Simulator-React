@@ -1,10 +1,12 @@
 import { useState } from "react";
 import { Improvement } from "../../../models/Improvement";
 import { ImprovementCosts } from "../../../store/ImprovementsCost";
+import { TileData } from "../../../models/Tile";
+import { Tile } from "./Tile";
 
 interface AddImprovementDialogProps {
   onClose: (improvement?: Improvement) => void;
-  onAdd: (improvement: Improvement) => void;
+  onAdd: (improvement: Improvement, index: number) => void;
 }
 
 export function AddImprovementDialog(props: AddImprovementDialogProps) {
@@ -18,11 +20,12 @@ export function AddImprovementDialog(props: AddImprovementDialogProps) {
   const handleAdd = (e: React.FormEvent) => {
     e.preventDefault();
     if (selectedImprovement) {
-      props.onAdd(selectedImprovement);
+      props.onAdd(selectedImprovement, 0);
     }
     setSelectedImprovement(undefined);
     props.onClose();
   };
+
   return (
     <div className="add-improvement-dialog">
 
@@ -66,6 +69,3 @@ export function AddImprovementDialog(props: AddImprovementDialogProps) {
     </div>
   );
 }
-
-
-//onClick={onAdd(selectedImprovement)} <-----SUBMIT BUTTON IDEAS

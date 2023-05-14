@@ -20,8 +20,7 @@ export function Map() {
   // inside the onAdd function I was working on, you will want to call setTiles() and use the splice method to change the item
   // there are slides that show how to splice 
 
-  const [tiles, setTiles] = useState(Array.from(Array(5).keys()).map((_, index) => ({ index: index, improvement: undefined })))
-
+  const [tiles, setTiles] = useState<TileData[]>(Array.from(Array(5).keys()).map((_, index) => ({ index: index, improvement: undefined })))
   //const tiles: TileData[] = Array.from(Array(5).keys()).map((_, index) => ({ index: index, improvement: undefined }));
 
   return (
@@ -39,10 +38,13 @@ export function Map() {
       </div>
 
       {(selectedTile !== undefined && selectedTile.improvement === undefined) && <AddImprovementDialog
-        onAdd={(improvement) => {
+        onAdd={(improvement: Improvement, index: number) => {
           setSelectedTile({ ...selectedTile, improvement: improvement })
-          setTiles(tiles => [...tiles.slice(0, tiles.index), newTile,
-          ...tiles.slice(index + 1)]);
+          setTiles((prev) => {
+            const newTiles = prev.slice(0);
+            newTiles.slice(index, 1);
+            return newTiles;
+          });
         }}
         onClose={() => { }}></AddImprovementDialog>}
 
