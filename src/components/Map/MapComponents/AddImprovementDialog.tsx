@@ -7,6 +7,7 @@ import { Tile } from "./Tile";
 interface AddImprovementDialogProps {
   onClose: (improvement?: Improvement) => void;
   onAdd: (improvement: Improvement, index: number) => void;
+  index: number; // Add the index property
 }
 
 export function AddImprovementDialog(props: AddImprovementDialogProps) {
@@ -20,7 +21,7 @@ export function AddImprovementDialog(props: AddImprovementDialogProps) {
   const handleAdd = (e: React.FormEvent) => {
     e.preventDefault();
     if (selectedImprovement) {
-      props.onAdd(selectedImprovement, 0);
+      props.onAdd(selectedImprovement, props.index);
     }
     setSelectedImprovement(undefined);
     props.onClose();

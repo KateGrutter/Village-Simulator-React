@@ -5,6 +5,7 @@ export const ImprovementCosts: Improvement[] = [
     {
         type: 'House',
         level: 1,
+        icon: 'assets/images/people.png',
         resourceProduced: {
             type: 'People',
             amount: +5
@@ -29,6 +30,7 @@ export const ImprovementCosts: Improvement[] = [
     {
         type: 'Field',
         level: 1,
+        icon: 'assets/images/field.png',
         resourceProduced: {
             type: 'Grain',
             amount: +5
@@ -45,6 +47,7 @@ export const ImprovementCosts: Improvement[] = [
     {
         type: 'Pasture',
         level: 1,
+        icon: 'assets/images/sheep.png',
         resourceProduced: {
             type: 'Sheep',
             amount: +5
@@ -66,6 +69,7 @@ export const ImprovementCosts: Improvement[] = [
     {
         type: 'Lumber Mill',
         level: 1,
+        icon: 'assets/images/lumberMill.png',
         resourceProduced: {
             type: 'Lumber',
             amount: +10
@@ -78,6 +82,7 @@ export const ImprovementCosts: Improvement[] = [
     {
         type: 'Well',
         level: 1,
+        icon: 'assets/images/well.png',
         resourceProduced: {
             type: 'Water',
             amount: +10
@@ -96,6 +101,7 @@ export const ImprovementCosts: Improvement[] = [
 export const House: Improvement = {
     type: 'House',
     level: 1,
+    icon: 'assets/images/people.png',
     resourceProduced: {
         type: 'People',
         amount: +5

@@ -8,48 +8,66 @@ import { House } from "../../store/ImprovementsCost";
 import { EditImprovementDialog } from "./MapComponents/EditImprovementDialog";
 
 export function Map() {
-
-  const [selectedTile, setSelectedTile] = useState<TileData | undefined>(undefined)
+  const [selectedTile, setSelectedTile] = useState<TileData | undefined>(undefined);
 
   const handleTileClick = (tile: TileData) => {
-    setSelectedTile(tile)
-    return;
+    setSelectedTile(tile);
   };
 
-  // move tiles to a state variable - does it need type tiles: TileData[] ??
-  // inside the onAdd function I was working on, you will want to call setTiles() and use the splice method to change the item
-  // there are slides that show how to splice 
+  const numRows = 5;
+  const numColumns = 5;
 
-  const [tiles, setTiles] = useState<TileData[]>(Array.from(Array(5).keys()).map((_, index) => ({ index: index, improvement: undefined })))
-  //const tiles: TileData[] = Array.from(Array(5).keys()).map((_, index) => ({ index: index, improvement: undefined }));
+  const [tiles, setTiles] = useState<TileData[]>(() => {
+    const initialTiles: TileData[] = [];
+    for (let row = 0; row < numRows; row++) {
+      for (let column = 0; column < numColumns; column++) {
+        initialTiles.push({ index: row * numColumns + column, improvement: undefined });
+      }
+    }
+    return initialTiles;
+  });
+
+  const handleAddImprovement = (improvement: Improvement, index: number) => {
+    setTiles((prevTiles) => {
+      const updatedTiles = prevTiles.map((tile) => {
+        if (tile.index === index) {
+          return { ...tile, improvement: improvement };
+        }
+        return tile;
+      });
+      return updatedTiles;
+    });
+    setSelectedTile((prevSelectedTile) => {
+      if (prevSelectedTile && prevSelectedTile.index === index) {
+        return { ...prevSelectedTile, improvement: improvement };
+      }
+      return prevSelectedTile;
+    });
+  };
 
   return (
     <div>
       <div className="gameboard">
-        {Array.from(Array(5).keys()).map((index) => (
-          <div className="gameboard-row">
-            {tiles.map((tile, index) => (
-              <div key={index} className="tile" onClick={() => handleTileClick(tile)}>
-                <Tile value={tile} />
-              </div>
-            ))}
+        {Array.from(Array(numRows).keys()).map((rowIndex) => (
+          <div className="gameboard-row" key={rowIndex}>
+            {tiles
+              .filter((tile) => Math.floor(tile.index / numColumns) === rowIndex) // Filter tiles for the current row
+              .map((tile) => (
+                <div key={tile.index} className="tile" onClick={() => handleTileClick(tile)}>
+                  <Tile value={tile} />
+                </div>
+              ))}
           </div>
         ))}
       </div>
 
-      {(selectedTile !== undefined && selectedTile.improvement === undefined) && <AddImprovementDialog
-        onAdd={(improvement: Improvement, index: number) => {
-          setSelectedTile({ ...selectedTile, improvement: improvement })
-          setTiles((prev) => {
-            const newTiles = prev.slice(0);
-            newTiles.slice(index, 1);
-            return newTiles;
-          });
-        }}
-        onClose={() => { }}></AddImprovementDialog>}
-
-
-      {selectedTile?.improvement !== undefined && <EditImprovementDialog onClose={() => { }} onUpgrade={() => { }} onDowngrade={() => { }} onRemove={() => { }} improvement={selectedTile?.improvement}></EditImprovementDialog>}
+      {selectedTile !== undefined && selectedTile.improvement === undefined && (
+        <AddImprovementDialog
+          onAdd={handleAddImprovement}
+          onClose={() => {}}
+          index={selectedTile.index || 0} // Pass the index of the selected tile or a default value
+        />
+      )}
     </div>
   );
 }
