@@ -35,8 +35,6 @@ export function AddImprovementDialog(props: AddImprovementDialogProps) {
               )
             )
           }
-          name="cars"
-          id="cars"
         >
           <option disabled selected>
             Please select a type
