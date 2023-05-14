@@ -5,11 +5,10 @@ import { ImprovementCosts } from "../../../store/ImprovementsCost";
 interface AddImprovementDialogProps {
   onClose: (improvement?: Improvement) => void;
   onAdd: (improvement: Improvement) => void;
-  improvement: Improvement | undefined;
 }
 
 export function AddImprovementDialog(props: AddImprovementDialogProps) {
-  const [selectedImprovement, setSelectedImprovement] = useState<Improvement | undefined>(props.improvement);
+  const [selectedImprovement, setSelectedImprovement] = useState<Improvement | undefined>(undefined);
 
   const handleCancel = () => {
     setSelectedImprovement(undefined);
@@ -26,6 +25,7 @@ export function AddImprovementDialog(props: AddImprovementDialogProps) {
   };
   return (
     <div className="add-improvement-dialog">
+
       <form onSubmit={handleAdd}>
         <select
           onChange={(e) =>

@@ -3,45 +3,62 @@ import { Improvement } from "../../models/Improvement";
 import "./Map.css";
 import { AddImprovementDialog } from "./MapComponents/AddImprovementDialog";
 import { Tile } from "./MapComponents/Tile";
+import { TileData } from "../../models/Tile";
+import { House } from "../../store/ImprovementsCost";
+import { EditImprovementDialog } from "./MapComponents/EditImprovementDialog";
 
 export function Map() {
 
-  const handleTileClick = () => {
-    return console.log({Tile})
+  const [selectedTile, setSelectedTile] = useState<TileData | undefined>(undefined)
+
+  const handleTileClick = (tile: TileData) => {
+    setSelectedTile (tile)
+    return;
+    
     
   };
 
-  function GameboardRow({ rowNumber, handleTileClick }: any) {
-    const tiles = Array.from(Array(5).keys());
+  // function GameboardRow({ rowNumber, handleTileClick }: any) {
+  //   const tiles: TileData[] =Array.from(Array(5).keys()).map((_, index) => ({index: index, improvement: undefined}));
   
-    return (
-      <div className="gameboard-row">
-        {tiles.map((index) => (
-          <div key={rowNumber + index} className="tile" onClick={handleTileClick}>
-            <Tile value={rowNumber + index} />
-          </div>
-        ))}
-      </div>
-    );
-  }
+  //   return (
+  //     <div className="gameboard-row">
+  //       {tiles.map((tile, index) => (
+  //         <div key={rowNumber + index} className="tile" onClick={handleTileClick}>
+  //           <Tile value={rowNumber + index} />
+  //         </div>
+  //       ))}
+  //     </div>
+  //   );
+  // }
 
+  // move tiles to a state variable
+  // inside the onAdd function I was working on, you will want to call setTiles() and use the splice method to change the item
+  // there are slides that show how to splice 
+  // 
+
+  const tiles: TileData[] =Array.from(Array(5).keys()).map((_, index) => ({index: index, improvement: undefined}));
 
   return (
+    <div>
       <div className="gameboard">
         {Array.from(Array(5).keys()).map((index) => (
-          <GameboardRow
-            key={index}
-            rowNumber={index * 5 + 1}
-            handleTileClick={handleTileClick}
-          />
+          <div className="gameboard-row">
+          {tiles.map((tile, index) => (
+            <div key={index} className="tile" onClick={() => handleTileClick(tile)}>
+              <Tile value={tile} />
+            </div>
+          ))}
+        </div>
         ))}
-        {/* {showDialog && (
-          <AddImprovementDialog
-            improvement={selectedTile}
-            onClose={handleDialogClose}
-            onAdd={handleAddImprovement}
-          />
-        )} */}
+      </div>
+      
+      {(selectedTile !== undefined && selectedTile.improvement === undefined) && <AddImprovementDialog  onAdd={(improvement) =>{
+        
+        setSelectedTile({...selectedTile, improvement: improvement})}} onClose={() => {}}></AddImprovementDialog>}
+      
+      
+       {selectedTile?.improvement !== undefined && <EditImprovementDialog onClose={() => {}} onUpgrade={() => {}} onDowngrade={() => {}} onRemove={() => {}} improvement={selectedTile?.improvement}></EditImprovementDialog>}
       </div>
     );
 }

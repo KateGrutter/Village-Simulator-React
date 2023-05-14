@@ -93,30 +93,30 @@ export const ImprovementCosts: Improvement[] = [
     }
 ]
 
-// export const House: Improvement = {
-//     type: 'House',
-//     level: 1,
-//     resourceProduced: {
-//         type: 'People',
-//         amount: +5
-//     },
-//     cost: [{
-//         type: 'Lumber',
-//         amount: -5
-//     },
-//     {
-//         type: 'Grain',
-//         amount: -5
-//     },
-//     {
-//         type: 'Water',
-//         amount: -5
-//     },
-//     {
-//         type: 'Sheep',
-//         amount: -1
-//     }]
-// }
+export const House: Improvement = {
+    type: 'House',
+    level: 1,
+    resourceProduced: {
+        type: 'People',
+        amount: +5
+    },
+    cost: [{
+        type: 'Lumber',
+        amount: -5
+    },
+    {
+        type: 'Grain',
+        amount: -5
+    },
+    {
+        type: 'Water',
+        amount: -5
+    },
+    {
+        type: 'Sheep',
+        amount: -1
+    }]
+}
 
 // export const Field: Improvement = {
 //     type: 'Field',

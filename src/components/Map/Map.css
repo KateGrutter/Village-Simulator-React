@@ -29,3 +29,9 @@
   color: black;
 
 }
+.hidden {
+  display: none;
+}
+.shown {
+  display: block;
+}

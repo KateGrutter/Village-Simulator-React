@@ -2,12 +2,13 @@ import { useState } from "react";
 import { Improvement } from "../../../models/Improvement";
 import { EditImprovementDialog } from "./EditImprovementDialog";
 import { AddImprovementDialog } from "./AddImprovementDialog";
+import { TileData } from "../../../models/Tile";
 
 
-export function Tile(props: {value: number}) {
+export function Tile(props: {value: TileData}) {
     return (
         <div className="tile">
-        
+        {props.value.improvement === undefined ? '' : props.value.improvement.type}
         </div>
     )
 }
