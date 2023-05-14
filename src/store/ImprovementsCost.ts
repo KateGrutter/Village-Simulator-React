@@ -1,11 +1,17 @@
 import { Improvement } from "../models/Improvement"
+import peopleIcon from '../assets/images/people.png'
+import fieldIcon from '../assets/images/field.png'
+import lumberIcon from '../assets/images/lumberMill.png' 
+import sheepIcon from '../assets/images/sheep.png'
+import wellIcon from '../assets/images/well.png'
+
 
 
 export const ImprovementCosts: Improvement[] = [
     {
         type: 'House',
         level: 1,
-        icon: 'assets/images/people.png',
+        icon: peopleIcon,
         resourceProduced: {
             type: 'People',
             amount: +5
@@ -30,7 +36,7 @@ export const ImprovementCosts: Improvement[] = [
     {
         type: 'Field',
         level: 1,
-        icon: 'assets/images/field.png',
+        icon: fieldIcon,
         resourceProduced: {
             type: 'Grain',
             amount: +5
@@ -47,7 +53,7 @@ export const ImprovementCosts: Improvement[] = [
     {
         type: 'Pasture',
         level: 1,
-        icon: 'assets/images/sheep.png',
+        icon: sheepIcon,
         resourceProduced: {
             type: 'Sheep',
             amount: +5
@@ -69,7 +75,7 @@ export const ImprovementCosts: Improvement[] = [
     {
         type: 'Lumber Mill',
         level: 1,
-        icon: 'assets/images/lumberMill.png',
+        icon: lumberIcon,
         resourceProduced: {
             type: 'Lumber',
             amount: +10
@@ -82,7 +88,7 @@ export const ImprovementCosts: Improvement[] = [
     {
         type: 'Well',
         level: 1,
-        icon: 'assets/images/well.png',
+        icon: wellIcon,
         resourceProduced: {
             type: 'Water',
             amount: +10
@@ -101,7 +107,7 @@ export const ImprovementCosts: Improvement[] = [
 export const House: Improvement = {
     type: 'House',
     level: 1,
-    icon: 'assets/images/people.png',
+    icon: peopleIcon,
     resourceProduced: {
         type: 'People',
         amount: +5
