@@ -1,12 +1,11 @@
 import { Resource } from "../../../models/Improvement"
 
-export function ResourceLine(props: { resources: Resource }) {
-
+export function ResourceLine(props: { resource: Resource }) {
     return (
-        <div>
-
-            <td>{props.resources.icon}{props.resources.type}</td>
-            <td>{props.resources.amount}</td>
-        </div>
-    )
-}
+      <div>
+        <td>{props.resource.icon}{props.resource.type}</td>
+        <td>{props.resource.amount}</td>
+      </div>
+    );
+  }
+  

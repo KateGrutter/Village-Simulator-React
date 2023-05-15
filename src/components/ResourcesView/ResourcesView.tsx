@@ -2,26 +2,35 @@ import './ResourceView.css';
 import { Improvement } from '../../models/Improvement';
 import { useState } from 'react'
 import { ResourceLine } from './ResourceComponents/ResourceLine';
+import { Resource } from '../../models/Improvement';
 
-export function ResourceView() {
+interface ResourceViewProps {
+  resources: Resource[];
+}
+export function ResourceView(props: ResourceViewProps) {
+  const { resources } = props;
 
   return (
     <div>
       <table>
-        <tr>
-          <th>Resource</th>
-          <th>Available</th>
-        </tr>
-        {/* {
-          resources.map(resource =>
-            <tr>
-              <td><ResourceLine resources={resource}></ResourceLine></td>
-            </tr>)
-        } */}
-
+        <thead>
+          <tr>
+            <th>Resource</th>
+            <th>Available</th>
+          </tr>
+        </thead>
+        <tbody>
+          {resources.map((resource: Resource) => (
+            <tr key={resource.type}>
+              <td>
+                <ResourceLine resource={resource} />
+              </td>
+            </tr>
+          ))}
+        </tbody>
       </table>
     </div>
-  )
+  );
 }
 
 

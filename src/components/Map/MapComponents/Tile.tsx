@@ -11,7 +11,7 @@ interface TileProps {
   }
   
   export function Tile({ tile }: TileProps) {
-    console.log('Rendering Tile:', tile);
+    //console.log('Rendering Tile:', tile);
     const hasImprovement = tile.improvement !== undefined;
   
     return (

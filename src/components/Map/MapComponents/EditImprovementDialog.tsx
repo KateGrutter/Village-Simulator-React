@@ -9,7 +9,7 @@ export function EditImprovementDialog(props: { improvement: Improvement, onClose
             <div className="improvement-info">
                 <p>Type {props.improvement.type}</p>
                 <p>Level {props.improvement.level}</p>
-                <p>Benefit {props.improvement.resourceProduced.amount} {props.improvement.resourceProduced.type} </p>
+                <p>Benefit {props.improvement.resourceProduced?.amount} {props.improvement.resourceProduced?.type} </p>
                 <div> Cost {
                     props.improvement.cost.map((cost, index) => (
                         <li key={index}>

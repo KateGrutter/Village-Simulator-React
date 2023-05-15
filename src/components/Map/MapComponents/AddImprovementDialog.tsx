@@ -53,8 +53,8 @@ export function AddImprovementDialog(props: AddImprovementDialogProps) {
         </select>
         <div>
           Benefit{" "}
-          {selectedImprovement ? selectedImprovement.resourceProduced.amount : ""}{" "}
-          {selectedImprovement ? selectedImprovement.resourceProduced.type : ""}{" "}
+          {selectedImprovement ? selectedImprovement.resourceProduced?.amount : ""}{" "}
+          {selectedImprovement ? selectedImprovement.resourceProduced?.type : ""}{" "}
         </div>
         <div>
           Cost{" "}

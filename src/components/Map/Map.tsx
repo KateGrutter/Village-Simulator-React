@@ -4,24 +4,28 @@ import "./Map.css";
 import { AddImprovementDialog } from "./MapComponents/AddImprovementDialog";
 import { Tile } from "./MapComponents/Tile";
 import { TileData } from "../../models/Tile";
-import { House } from "../../store/ImprovementsCost";
+import { Resource } from "../../models/Improvement";
+
 import { EditImprovementDialog } from "./MapComponents/EditImprovementDialog";
-import peopleIcon from "../../assets/images/people.png";
-import fieldIcon from "../../assets/images/field.png";
-import lumberIcon from "../../assets/images/lumberMill.png";
-import sheepIcon from "../../assets/images/sheep.png";
-import wellIcon from "../../assets/images/well.png";
+
+interface ResourceData {
+  type: string;
+  amount: number;
+}
 
 interface MapProps {
   gridSize: number;
+  handleResourceUpdate: (improvement: Improvement) => void;
 }
 
-export function Map({ gridSize }: MapProps) {
+export function Map({ gridSize, handleResourceUpdate }: MapProps) {
   const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false);
   const [selectedTile, setSelectedTile] = useState<TileData | undefined>(undefined);
+  const [resources, setResources] = useState<ResourceData[]>([]);
+
   // State for the grid of tiles
   const [tiles, setTiles] = useState<TileData[][]>(
-     // Initialize the grid with empty tiles
+    // Initialize the grid with empty tiles
     Array.from(Array(gridSize), (_, rowIndex) =>
       Array.from(Array(gridSize), (_, tileIndex) => ({
         rowIndex,
@@ -43,19 +47,49 @@ export function Map({ gridSize }: MapProps) {
     rowIndex: number,
     tileIndex: number
   ) => {
-    // console.log("Adding improvement:", improvement);
-    // console.log("Row index:", rowIndex);
-    // console.log("Tile index:", tileIndex);
-    setTiles((prevTiles) => {
-      const updatedTiles = [...prevTiles];
-      updatedTiles[rowIndex][tileIndex].improvement = improvement; // Add the improvement to the selected tile
-      // console.log("Updated tiles:", updatedTiles);
-      return updatedTiles;
+    console.log('Improvement:', improvement);
+    console.log('Row index:', rowIndex);
+    console.log('Tile index:', tileIndex);
+  
+    const canProduce = improvement.cost.every((costResource) => {
+      const matchingResource = resources.find(
+        (resource) => resource.type === costResource.type
+      );
+      console.log('Matching resource:', matchingResource);
+      console.log('Cost resource:', costResource);
+  
+      if (!matchingResource || matchingResource.amount < costResource.amount) {
+        console.log('Can produce: ');
+        console.log('Insufficient resources to produce improvement');
+        return false;
+      }
+      return true;
     });
+    console.log('Resources:', resources);
+    console.log('Can produce:', canProduce);
+    if (canProduce) {
+      setTiles((prevTiles) => {
+        const updatedTiles = [...prevTiles];
+        updatedTiles[rowIndex][tileIndex].improvement = improvement;
+        handleResourceUpdate(improvement); // Add this line to update resources
+        return updatedTiles;
+      });
+
+      // Deduct the cost from resources
+      setResources((prevResources) => {
+        const updatedResources = [...prevResources];
+        for (const costResource of improvement.cost) {
+          const resourceIndex = updatedResources.findIndex((res) => res.type === costResource.type);
+          if (resourceIndex !== -1) {
+            updatedResources[resourceIndex].amount -= costResource.amount;
+          }
+        }
+        return updatedResources;
+      });
+    } else {
+      console.log("Insufficient resources to produce improvement");
+    }
   };
-
-  // console.log("selectedTile:", selectedTile);
-
   return (
     <div>
       <div className="gameboard">
@@ -65,7 +99,7 @@ export function Map({ gridSize }: MapProps) {
               <div
                 className="tile"
                 key={tile.index}
-                onClick={() => handleTileClick(tile.rowIndex, tile.tileIndex)}  // Call the handleTileClick function with the tile's row and tile index
+                onClick={() => handleTileClick(tile.rowIndex, tile.tileIndex)} // Call the handleTileClick function with the tile's row and tile index
               >
                 <Tile tile={tile} selectedTile={selectedTile} />
               </div>
