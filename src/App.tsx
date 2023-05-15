@@ -54,7 +54,8 @@ function App() {
 
   return (
     <div className="App">
-      <Map></Map>
+      <Map gridSize={8}></Map> 
+      {/* Dynamic grid size */}
     </div>
   );
 }

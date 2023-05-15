@@ -7,7 +7,9 @@ import { Tile } from "./Tile";
 interface AddImprovementDialogProps {
   onClose: (improvement?: Improvement) => void;
   onAdd: (improvement: Improvement, index: number) => void;
-  index: number; // Add the index property
+  rowIndex: number;
+  tileIndex: number;
+  index: number;
 }
 
 export function AddImprovementDialog(props: AddImprovementDialogProps) {

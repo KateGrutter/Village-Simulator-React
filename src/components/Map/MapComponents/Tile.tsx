@@ -10,14 +10,13 @@ interface TileProps {
     selectedTile: TileData | undefined;
   }
   
-  export function Tile({ tile, selectedTile }: TileProps) {
+  export function Tile({ tile }: TileProps) {
+    console.log('Rendering Tile:', tile);
     const hasImprovement = tile.improvement !== undefined;
-    const isSelected =
-      selectedTile !== undefined && tile.index === selectedTile.index;
   
     return (
       <div className={`tile ${hasImprovement ? 'has-improvement' : ''}`}>
-        {hasImprovement && isSelected && tile.improvement && (
+        {hasImprovement && tile.improvement && (
           <img src={tile.improvement.icon} alt="Improvement Icon" />
         )}
       </div>

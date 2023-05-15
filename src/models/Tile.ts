@@ -2,5 +2,7 @@ import { Improvement } from "./Improvement";
 
 export interface TileData {
     improvement: Improvement | undefined;
-    index: number
+  rowIndex: number; // Add the rowIndex property
+  tileIndex: number;
+  index: number;
 }
