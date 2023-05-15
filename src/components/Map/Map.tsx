@@ -13,25 +13,47 @@ interface ResourceData {
   amount: number;
 }
 
-interface MapProps {
-  gridSize: number;
-  handleResourceUpdate: (improvement: Improvement) => void;
-}
+// interface MapProps {
+//   gridSize: number;
+//   handleResourceUpdate: (improvement: Improvement) => void;
+//   resources: Resource[];
+// }
 
-export function Map({ gridSize, handleResourceUpdate }: MapProps) {
+export function Map(props: { gridSize: number, handleResourceUpdate: (improvement: Improvement)=> void }) {
   const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false);
   const [selectedTile, setSelectedTile] = useState<TileData | undefined>(undefined);
-  const [resources, setResources] = useState<ResourceData[]>([]);
+  const [resources, setResources] = useState<Resource[]>([
+    {
+      type: "Lumber",
+      amount: 5,
+    },
+    {
+      type: "Grain",
+      amount: 5,
+    },
+    {
+      type: "Water",
+      amount: 5,
+    },
+    {
+      type: "Sheep",
+      amount: 1,
+    },
+    {
+      type: "People",
+      amount: 5,
+    }
+  ]);
 
   // State for the grid of tiles
   const [tiles, setTiles] = useState<TileData[][]>(
     // Initialize the grid with empty tiles
-    Array.from(Array(gridSize), (_, rowIndex) =>
-      Array.from(Array(gridSize), (_, tileIndex) => ({
+    Array.from(Array(props.gridSize), (_, rowIndex) =>
+      Array.from(Array(props.gridSize), (_, tileIndex) => ({
         rowIndex,
         tileIndex,
         improvement: undefined,
-        index: rowIndex * gridSize + tileIndex, // Add the 'index' property for unique identification
+        index: rowIndex * props.gridSize + tileIndex, // Add the 'index' property for unique identification
       }))
     )
   );
@@ -71,7 +93,7 @@ export function Map({ gridSize, handleResourceUpdate }: MapProps) {
       setTiles((prevTiles) => {
         const updatedTiles = [...prevTiles];
         updatedTiles[rowIndex][tileIndex].improvement = improvement;
-        handleResourceUpdate(improvement); // Add this line to update resources
+        props.handleResourceUpdate(improvement); // Add this line to update resources
         return updatedTiles;
       });
 

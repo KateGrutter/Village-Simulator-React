@@ -25,7 +25,11 @@ function App() {
     {
       type: "Sheep",
       amount: 1,
-    }
+    },
+  {
+    type: "People",
+    amount: 0,
+  }
   ]);
 
   function handleResourceUpdate(improvement: Improvement) {
