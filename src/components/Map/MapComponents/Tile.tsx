@@ -5,35 +5,39 @@ import { AddImprovementDialog } from "./AddImprovementDialog";
 import { TileData } from "../../../models/Tile";
 
 
-
-
-export function Tile(props: { value: TileData }) {
-    const [selectedImprovement, setSelectedImprovement] = useState<Improvement | undefined>(props.value.improvement);
+interface TileProps {
+    tile: TileData;
+    selectedTile: TileData | undefined;
+  }
   
-    const getImprovementIcon = () => {
-      if (selectedImprovement && selectedImprovement.icon) {
-        return selectedImprovement.icon;
-      }
-      return ""; // Default icon path or empty string if no icon is available
-    };
-  
-    const handleSelectImprovement = (improvement: Improvement | undefined) => {
-      setSelectedImprovement(improvement);
-    };
+  export function Tile({ tile, selectedTile }: TileProps) {
+    const hasImprovement = tile.improvement !== undefined;
+    const isSelected =
+      selectedTile !== undefined && tile.index === selectedTile.index;
   
     return (
-      <div className="tile" onClick={() => handleSelectImprovement(props.value.improvement)}>
-        {selectedImprovement ? (
-          <>
-            <img src={getImprovementIcon()} alt="Improvement Icon" />
-            {selectedImprovement.type}
-          </>
-        ) : (
-          "No Improvement"
+      <div className={`tile ${hasImprovement ? 'has-improvement' : ''}`}>
+        {hasImprovement && isSelected && tile.improvement && (
+          <img src={tile.improvement.icon} alt="Improvement Icon" />
         )}
       </div>
     );
   }
+
+
+
+// export function Tile(props: {value: TileData}) {
+//     return (
+//         <div className="tile">
+//         {props.value.improvement === undefined ? '' : props.value.improvement.type}
+//         </div>
+//     )
+// }
+// props: { improvement: Improvement, onClose: (improvement: Improvement) => void, onUpgrade: (improvement: Improvement) => void, onDowngrade: (improvement: Improvement) => void, onRemove: (improvement: Improvement) => void, onAdd: (improvement: Improvement) => void }
+{/* <EditImprovementDialog improvement={props.improvement} onUpgrade={props.onUpgrade} onDowngrade={props.onDowngrade} onClose={props.onClose} onRemove={props.onRemove}></EditImprovementDialog>
+            <AddImprovementDialog onAdd={props.onAdd} onClose={props.onClose} improvement={props.improvement} /> */}
+// {props.improvement.type} {props.improvement.level}{props.improvement.resourceProduced.amount}{props.improvement.cost.map(newCost => props.improvement.cost)}
+  
 // props: { improvement: Improvement, onClose: (improvement: Improvement) => void, onUpgrade: (improvement: Improvement) => void, onDowngrade: (improvement: Improvement) => void, onRemove: (improvement: Improvement) => void, onAdd: (improvement: Improvement) => void }
 {/* <EditImprovementDialog improvement={props.improvement} onUpgrade={props.onUpgrade} onDowngrade={props.onDowngrade} onClose={props.onClose} onRemove={props.onRemove}></EditImprovementDialog>
             <AddImprovementDialog onAdd={props.onAdd} onClose={props.onClose} improvement={props.improvement} /> */}
