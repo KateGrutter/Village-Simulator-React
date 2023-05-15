@@ -26,17 +26,17 @@ function App() {
       type: "Sheep",
       amount: 1,
     },
-  {
-    type: "People",
-    amount: 0,
-  }
+    {
+      type: "People",
+      amount: 0,
+    }
   ]);
 
   function handleResourceUpdate(improvement: Improvement) {
     console.log('Resources2:', resources);
     setResources((prevResources) => {
       const updatedResources = [...prevResources];
-  
+
       // Check if the cost can be met
       for (const costResource of improvement.cost) {
         const resourceIndex = updatedResources.findIndex(
@@ -45,13 +45,13 @@ function App() {
         if (resourceIndex === -1 || updatedResources[resourceIndex].amount < costResource.amount) {
           console.log('Resources:', resources);
           console.log(`Matching resource:`, updatedResources[resourceIndex]);
-        console.log(`Cost resource:`, costResource);
-        console.log(`Can produce: false`);
-        console.log(`Insufficient resources to produce improvement`);
+          console.log(`Cost resource:`, costResource);
+          console.log(`Can produce: false`);
+          console.log(`Insufficient resources to produce improvement`);
           return prevResources; // Return the previous resources without updating
         }
       }
-  
+
       // Deduct the cost from resources
       for (const costResource of improvement.cost) {
         const resourceIndex = updatedResources.findIndex(
@@ -59,11 +59,11 @@ function App() {
         );
         if (resourceIndex !== -1) {
           console.log(`Subtracting ${costResource.amount} ${costResource.type} from ${updatedResources[resourceIndex].amount}`);
-          updatedResources[resourceIndex].amount -= costResource.amount;
+          updatedResources[resourceIndex].amount += costResource.amount;
           console.log(`Updated amount: ${updatedResources[resourceIndex].amount}`);
         }
       }
-  
+
       // Add the produced resource to resources
       if (improvement.resourceProduced) {
         const resourceIndex = updatedResources.findIndex(
@@ -79,14 +79,14 @@ function App() {
       } else {
         console.log('No resource produced');
       }
-  
+
       return updatedResources;
     });
   }
 
   return (
     <div className="App">
-      <Map gridSize={5} handleResourceUpdate={handleResourceUpdate} /> {/* Updated prop name */}
+      <Map gridSize={5} handleResourceUpdate={handleResourceUpdate} resources={resources} setResources={setResources} /> {/* Updated prop name */}
       <ResourceView resources={resources} />
     </div>
   );

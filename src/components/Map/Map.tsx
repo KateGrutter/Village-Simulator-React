@@ -8,42 +8,9 @@ import { Resource } from "../../models/Improvement";
 
 import { EditImprovementDialog } from "./MapComponents/EditImprovementDialog";
 
-interface ResourceData {
-  type: string;
-  amount: number;
-}
-
-// interface MapProps {
-//   gridSize: number;
-//   handleResourceUpdate: (improvement: Improvement) => void;
-//   resources: Resource[];
-// }
-
-export function Map(props: { gridSize: number, handleResourceUpdate: (improvement: Improvement)=> void }) {
+export function Map(props: { gridSize: number, handleResourceUpdate: (improvement: Improvement) => void, resources: Resource[], setResources: any }) {
   const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false);
   const [selectedTile, setSelectedTile] = useState<TileData | undefined>(undefined);
-  const [resources, setResources] = useState<Resource[]>([
-    {
-      type: "Lumber",
-      amount: 5,
-    },
-    {
-      type: "Grain",
-      amount: 5,
-    },
-    {
-      type: "Water",
-      amount: 5,
-    },
-    {
-      type: "Sheep",
-      amount: 1,
-    },
-    {
-      type: "People",
-      amount: 5,
-    }
-  ]);
 
   // State for the grid of tiles
   const [tiles, setTiles] = useState<TileData[][]>(
@@ -69,17 +36,14 @@ export function Map(props: { gridSize: number, handleResourceUpdate: (improvemen
     rowIndex: number,
     tileIndex: number
   ) => {
-    console.log('Improvement:', improvement);
-    console.log('Row index:', rowIndex);
-    console.log('Tile index:', tileIndex);
-  
+
     const canProduce = improvement.cost.every((costResource) => {
-      const matchingResource = resources.find(
+      const matchingResource = props.resources.find(
         (resource) => resource.type === costResource.type
       );
       console.log('Matching resource:', matchingResource);
       console.log('Cost resource:', costResource);
-  
+
       if (!matchingResource || matchingResource.amount < costResource.amount) {
         console.log('Can produce: ');
         console.log('Insufficient resources to produce improvement');
@@ -87,7 +51,7 @@ export function Map(props: { gridSize: number, handleResourceUpdate: (improvemen
       }
       return true;
     });
-    console.log('Resources:', resources);
+    console.log('Resources:', props.resources);
     console.log('Can produce:', canProduce);
     if (canProduce) {
       setTiles((prevTiles) => {
@@ -98,7 +62,7 @@ export function Map(props: { gridSize: number, handleResourceUpdate: (improvemen
       });
 
       // Deduct the cost from resources
-      setResources((prevResources) => {
+      props.setResources((prevResources: any) => {
         const updatedResources = [...prevResources];
         for (const costResource of improvement.cost) {
           const resourceIndex = updatedResources.findIndex((res) => res.type === costResource.type);
@@ -147,9 +111,9 @@ export function Map(props: { gridSize: number, handleResourceUpdate: (improvemen
         // Render the EditImprovementDialog if a tile is selected and it has an improvement
         <EditImprovementDialog
           onClose={() => setSelectedTile(undefined)}
-          onUpgrade={() => {}}
-          onDowngrade={() => {}}
-          onRemove={() => {}}
+          onUpgrade={() => { }}
+          onDowngrade={() => { }}
+          onRemove={() => { }}
           improvement={selectedTile?.improvement}
         />
       )}
