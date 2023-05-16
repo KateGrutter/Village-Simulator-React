@@ -16,13 +16,20 @@ export function EditImprovementDialog(props: {
     props.improvement.resourceProduced?.amount || 0
   ); // State for the resource amount produced by the improvement
 
+  
+  const [disabled, setDisabled] = useState<boolean | undefined>(false)
   const upgradeImprovement = () => {
+    setDisabled(false)
     const enoughResources = props.improvement.cost.every((cost) => {
       const matchingResource = props.resources.find((resource) => resource.type === cost.type);
+      
       return matchingResource && matchingResource.amount >= cost.amount;
+      
+      
     });
 
     if (!enoughResources) {
+      setDisabled(true)
       console.log('Not enough resources to upgrade improvement');
       return;
     }
@@ -110,7 +117,7 @@ export function EditImprovementDialog(props: {
       </div>
       <div className="buttons-container">
         <button onClick={props.onClose}>Close</button>
-        <button onClick={upgradeImprovement}>Upgrade</button>
+        <button onClick={upgradeImprovement} disabled={disabled}>Upgrade</button>
         <button onClick={downgradeImprovement}>Downgrade</button>
         <button onClick={removeImprovement}>Remove</button>
       </div>
