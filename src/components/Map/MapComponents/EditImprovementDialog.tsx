@@ -39,7 +39,13 @@ export function EditImprovementDialog(props: {
     });
 
     setLevel((prevLevel) => prevLevel + 1); //increase level
-    setResourceAmount((prevAmount) => prevAmount + (props.improvement.resourceProduced?.amount || 0)); //add amount
+
+    const addBenefit = props.improvement.resourceProduced?.amount || 0;
+    const resourceMatch = updatedResources.find((resource) => resource.type === props.improvement.resourceProduced?.type);
+    if (resourceMatch) {
+      resourceMatch.amount += addBenefit;
+    }
+
     props.setResources(updatedResources);
     props.onUpgrade();
   };
