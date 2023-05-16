@@ -91,14 +91,14 @@ export function Map(props: { gridSize: number, handleResourceUpdate: (improvemen
         }
         return updatedResources;
       });
-  
+
       // Remove the improvement from the tile
       setTiles((prevTiles) => {
         const updatedTiles = [...prevTiles];
         updatedTiles[selectedTile!.rowIndex][selectedTile!.tileIndex].improvement = undefined;
         return updatedTiles;
       });
-  
+
       props.handleResourceUpdate(improvement); // Update the resources view
       setSelectedTile(undefined);
     }
@@ -142,6 +142,8 @@ export function Map(props: { gridSize: number, handleResourceUpdate: (improvemen
           onDowngrade={() => { }}
           onRemove={(handleRemoveImprovement)}
           improvement={selectedTile?.improvement}
+          resources={props.resources}
+          setResources={props.setResources}
         />
       )}
     </div>
