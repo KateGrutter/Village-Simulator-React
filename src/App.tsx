@@ -7,6 +7,7 @@ import { ResourceView } from "./components/ResourcesView/ResourcesView";
 import { Improvement } from "./models/Improvement";
 import { ImprovementCosts } from "./store/ImprovementsCost";
 import { Resource } from "./models/Improvement";
+import { Header } from "./components/Header";
 
 function App() {
   const [resources, setResources] = useState<Resource[]>([
@@ -86,6 +87,7 @@ function App() {
 
   return (
     <div className="App">
+      <div className="header"><Header></Header></div>
       <Map gridSize={5} handleResourceUpdate={handleResourceUpdate} resources={resources} setResources={setResources} /> {/* Updated prop name */}
       <ResourceView resources={resources} />
     </div>

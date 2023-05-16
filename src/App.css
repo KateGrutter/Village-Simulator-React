@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Stint+Ultra+Expanded&display=swap');
+
 .App {
   display: flex;
   flex-direction: row;
@@ -5,5 +7,19 @@
   align-items: center;
   height: 100vh;
   width: 100vw;
+  background-color: #F2F8F8;
+  ;
 
+}
+
+.header {
+  width: 100%;
+  position: fixed;
+  background: #077187;
+  color: #F2F8F8;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  font-family: 'Stint Ultra Expanded', cursive;
+  letter-spacing: .2rem;
 }

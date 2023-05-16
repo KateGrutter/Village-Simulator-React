@@ -18,12 +18,10 @@
 .tile {
   height: 78px;
   width: 78px;
-  border: 1px solid white;
+  border: 1px solid #F2F8F8;
   border-radius: 3px;
 
-  background-color: green;
-
-
+  background-color: #CAE3E3;
 }
 
 .dialog-content {
