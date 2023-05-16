@@ -1,4 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Stint+Ultra+Expanded&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Stint+Ultra+Expanded&display=swap'); */
+/* @import url('https://fonts.googleapis.com/css2?family=Bungee+Inline&family=Stint+Ultra+Expanded&display=swap'); */
+@import url('https://fonts.googleapis.com/css2?family=Rye&display=swap');
 
 .App {
   display: flex;
@@ -20,6 +22,8 @@
   top: 0;
   display: flex;
   justify-content: center;
-  font-family: 'Stint Ultra Expanded', cursive;
+  /* font-family: 'Stint Ultra Expanded', cursive; */
+  /* font-family: 'Bungee Inline', cursive; */
+  font-family: 'Rye', cursive;
   letter-spacing: .2rem;
 }
