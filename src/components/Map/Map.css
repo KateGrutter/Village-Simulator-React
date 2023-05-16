@@ -4,24 +4,28 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: 1px solid black;
-  
+  padding-right: 40px;
+  /* border: 1px solid black; */
+
 }
+
 .gameboard-row {
   display: flex;
   flex-direction: row;
-  
+
 }
 
 .tile {
   height: 78px;
   width: 78px;
-  border: 1px solid black;
-  
+  border: 1px solid white;
+  border-radius: 3px;
+
   background-color: green;
 
-  
+
 }
+
 .dialog-content {
   display: flex;
   flex-direction: column;
@@ -29,9 +33,11 @@
   color: black;
 
 }
+
 .hidden {
   display: none;
 }
+
 .shown {
   display: block;
 }
