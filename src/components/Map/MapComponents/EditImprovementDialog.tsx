@@ -54,11 +54,37 @@ export function EditImprovementDialog(props: {
     if (level === 1) {
       return; // Cannot downgrade below level 1
     }
-    const newLevel = level - 1; // Decrease the improvement level
-    const newResourceAmount = resourceAmount - (props.improvement.resourceProduced?.amount || 0); // Subtract the resource amount from the total
-    setLevel(newLevel);
-    setResourceAmount(newResourceAmount);
-    props.onDowngrade(); // Call the onDowngrade callback provided by the parent component
+    const enoughResources = props.improvement.cost.every((cost) => {
+      const matchingResource = props.resources.find((resource) => resource.type === cost.type);
+      return matchingResource && matchingResource.amount >= cost.amount;
+    });
+
+    if (!enoughResources) {
+      console.log('Not enough resources to upgrade improvement');
+      return;
+    }
+
+    const updatedResources = props.resources.map((resource) => {
+      const matchingCost = props.improvement.cost.find((cost) => cost.type === resource.type);
+      if (matchingCost) {
+        return {
+          ...resource,
+          amount: resource.amount + matchingCost.amount,
+        };
+      }
+      return resource;
+    });
+
+    setLevel((prevLevel) => prevLevel - 1); //increase level
+
+    const removeBenefit = props.improvement.resourceProduced?.amount || 0;
+    const resourceMatch = updatedResources.find((resource) => resource.type === props.improvement.resourceProduced?.type);
+    if (resourceMatch) {
+      resourceMatch.amount -= removeBenefit;
+    }
+
+    props.setResources(updatedResources);
+    props.onDowngrade();
   };
 
   const removeImprovement = () => {
