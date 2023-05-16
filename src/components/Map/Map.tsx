@@ -76,6 +76,33 @@ export function Map(props: { gridSize: number, handleResourceUpdate: (improvemen
       console.log("Insufficient resources to produce improvement");
     }
   };
+
+  const handleRemoveImprovement = () => {
+    const improvement = selectedTile?.improvement;
+    if (improvement) {
+      // Add the improvement's cost back to resources
+      props.setResources((prevResources: Resource[]) => {
+        const updatedResources = [...prevResources];
+        for (const costResource of improvement.cost) {
+          const resourceIndex = updatedResources.findIndex((res) => res.type === costResource.type);
+          if (resourceIndex !== -1) {
+            updatedResources[resourceIndex].amount += costResource.amount;
+          }
+        }
+        return updatedResources;
+      });
+  
+      // Remove the improvement from the tile
+      setTiles((prevTiles) => {
+        const updatedTiles = [...prevTiles];
+        updatedTiles[selectedTile!.rowIndex][selectedTile!.tileIndex].improvement = undefined;
+        return updatedTiles;
+      });
+  
+      props.handleResourceUpdate(improvement); // Update the resources view
+      setSelectedTile(undefined);
+    }
+  };
   return (
     <div>
       <div className="gameboard">
@@ -113,7 +140,7 @@ export function Map(props: { gridSize: number, handleResourceUpdate: (improvemen
           onClose={() => setSelectedTile(undefined)}
           onUpgrade={() => { }}
           onDowngrade={() => { }}
-          onRemove={() => { }}
+          onRemove={(handleRemoveImprovement)}
           improvement={selectedTile?.improvement}
         />
       )}

@@ -4,9 +4,12 @@ import { useState } from 'react'
 import { ResourceLine } from './ResourceComponents/ResourceLine';
 import { Resource } from '../../models/Improvement';
 
+
+
 interface ResourceViewProps {
   resources: Resource[];
 }
+
 export function ResourceView(props: ResourceViewProps) {
   const { resources } = props;
 
@@ -32,6 +35,7 @@ export function ResourceView(props: ResourceViewProps) {
     </div>
   );
 }
+
 
 
 
