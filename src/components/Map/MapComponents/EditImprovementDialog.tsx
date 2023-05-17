@@ -17,9 +17,10 @@ export function EditImprovementDialog(props: {
   ); // State for the resource amount produced by the improvement
 
   
-  const [disabled, setDisabled] = useState<boolean | undefined>(false)
+  const [upgradeDisabled, setUpgradeDisabled] = useState<boolean>(false)
+  const [downgradeDisabled, setDowngradeDisabled] =useState<boolean>(false)
   const upgradeImprovement = () => {
-    setDisabled(false)
+    setUpgradeDisabled(false)
     const enoughResources = props.improvement.cost.every((cost) => {
       const matchingResource = props.resources.find((resource) => resource.type === cost.type);
       
@@ -29,7 +30,7 @@ export function EditImprovementDialog(props: {
     });
 
     if (!enoughResources) {
-      setDisabled(true)
+      setUpgradeDisabled(true)
       console.log('Not enough resources to upgrade improvement');
       return;
     }
@@ -59,6 +60,7 @@ export function EditImprovementDialog(props: {
 
   const downgradeImprovement = () => {
     if (level === 1) {
+      setDowngradeDisabled(true)
       return; // Cannot downgrade below level 1
     }
     const enoughResources = props.improvement.cost.every((cost) => {
@@ -117,10 +119,11 @@ export function EditImprovementDialog(props: {
       </div>
       <div className="buttons-container">
         <button onClick={props.onClose}>Close</button>
-        <button onClick={upgradeImprovement} disabled={disabled}>Upgrade</button>
-        <button onClick={downgradeImprovement}>Downgrade</button>
+        <button onClick={upgradeImprovement} disabled={upgradeDisabled}>Upgrade</button>
+        <button onClick={downgradeImprovement} disabled={downgradeDisabled}>Downgrade</button>
         <button onClick={removeImprovement}>Remove</button>
       </div>
     </div>
   );
 }
+
