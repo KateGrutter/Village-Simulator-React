@@ -24,6 +24,25 @@
   background-color: #CAE3E3;
 }
 
+.hiddenCircle {
+  display: none;
+}
+
+.shownCircle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #077187;
+  color: #fff;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
 .dialog-content {
   display: flex;
   flex-direction: column;

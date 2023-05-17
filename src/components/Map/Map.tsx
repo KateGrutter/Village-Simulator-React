@@ -126,7 +126,7 @@ export function Map(props: { gridSize: number, handleResourceUpdate: (improvemen
         <AddImprovementDialog
           onAdd={(improvement) =>
             handleAddImprovement(improvement, selectedTile.rowIndex, selectedTile.tileIndex)
-            
+
           }
           onClose={() => setSelectedTile(undefined)}
           rowIndex={selectedTile.rowIndex}
