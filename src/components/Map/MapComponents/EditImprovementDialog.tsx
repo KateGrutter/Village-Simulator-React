@@ -16,27 +16,28 @@ export function EditImprovementDialog(props: {
     props.improvement.resourceProduced?.amount || 0
   ); // State for the resource amount produced by the improvement
 
-  
-  const [upgradeDisabled, setUpgradeDisabled] = useState<boolean>(false)
-  const [downgradeDisabled, setDowngradeDisabled] =useState<boolean>(false)
-  const upgradeImprovement = () => {
-    setUpgradeDisabled(false)
-    const enoughResources = props.improvement.cost.every((cost) => {
-      const matchingResource = props.resources.find((resource) => resource.type === cost.type);
-      
-      return matchingResource && matchingResource.amount >= cost.amount;
-      
-      
-    });
+  const [upgradeDisabled, setUpgradeDisabled] = useState<boolean>(false);
+  const [downgradeDisabled, setDowngradeDisabled] = useState<boolean>(false);
 
+  const upgradeImprovement = () => {
+    setUpgradeDisabled(false);
+    const enoughResources = props.improvement.cost.every((cost) => {
+      const matchingResource = props.resources.find(
+        (resource) => resource.type === cost.type
+      );
+      return matchingResource && matchingResource.amount >= cost.amount;
+    });
+  
     if (!enoughResources) {
-      setUpgradeDisabled(true)
+      setUpgradeDisabled(true);
       console.log('Not enough resources to upgrade improvement');
       return;
     }
-
+  
     const updatedResources = props.resources.map((resource) => {
-      const matchingCost = props.improvement.cost.find((cost) => cost.type === resource.type);
+      const matchingCost = props.improvement.cost.find(
+        (cost) => cost.type === resource.type
+      );
       if (matchingCost) {
         return {
           ...resource,
@@ -45,36 +46,57 @@ export function EditImprovementDialog(props: {
       }
       return resource;
     });
-
-    setLevel((prevLevel) => prevLevel + 1); //increase level
-
+  
+    setLevel((prevLevel) => prevLevel + 1); // Increase level
+  
     const addBenefit = props.improvement.resourceProduced?.amount || 0;
-    const resourceMatch = updatedResources.find((resource) => resource.type === props.improvement.resourceProduced?.type);
+  
+    // Find the matching resource
+    const resourceMatch = updatedResources.find(
+      (resource) => resource.type === props.improvement.resourceProduced?.type
+    );
+  
+    // Add the benefit to the matching resource
     if (resourceMatch) {
-      resourceMatch.amount += addBenefit;
+      const updatedResourceMatch = {
+        ...resourceMatch,
+        amount: resourceMatch.amount + addBenefit,
+      };
+      const updatedResourcesWithBenefit = updatedResources.map((resource) =>
+        resource.type === props.improvement.resourceProduced?.type
+          ? updatedResourceMatch
+          : resource
+      );
+      props.setResources(updatedResourcesWithBenefit);
+    } else {
+      props.setResources(updatedResources);
     }
-
-    props.setResources(updatedResources);
+  
     props.onUpgrade();
   };
 
   const downgradeImprovement = () => {
     if (level === 1) {
-      setDowngradeDisabled(true)
+      setDowngradeDisabled(true);
       return; // Cannot downgrade below level 1
     }
+  
     const enoughResources = props.improvement.cost.every((cost) => {
-      const matchingResource = props.resources.find((resource) => resource.type === cost.type);
+      const matchingResource = props.resources.find(
+        (resource) => resource.type === cost.type
+      );
       return matchingResource && matchingResource.amount >= cost.amount;
     });
-
+  
     if (!enoughResources) {
       console.log('Not enough resources to upgrade improvement');
       return;
     }
-
+  
     const updatedResources = props.resources.map((resource) => {
-      const matchingCost = props.improvement.cost.find((cost) => cost.type === resource.type);
+      const matchingCost = props.improvement.cost.find(
+        (cost) => cost.type === resource.type
+      );
       if (matchingCost) {
         return {
           ...resource,
@@ -83,21 +105,89 @@ export function EditImprovementDialog(props: {
       }
       return resource;
     });
-
-    setLevel((prevLevel) => prevLevel - 1); //increase level
-
+  
+    setLevel((prevLevel) => prevLevel - 1); // Decrease level
+  
     const removeBenefit = props.improvement.resourceProduced?.amount || 0;
-    const resourceMatch = updatedResources.find((resource) => resource.type === props.improvement.resourceProduced?.type);
+  
+    // Find the matching resource
+    const resourceMatch = updatedResources.find(
+      (resource) => resource.type === props.improvement.resourceProduced?.type
+    );
+  
+    // Subtract the benefit from the matching resource
     if (resourceMatch) {
-      resourceMatch.amount -= removeBenefit;
+      const updatedResourceMatch = {
+        ...resourceMatch,
+        amount: resourceMatch.amount - removeBenefit,
+      };
+      const updatedResourcesWithBenefit = updatedResources.map((resource) =>
+        resource.type === props.improvement.resourceProduced?.type
+          ? updatedResourceMatch
+          : resource
+      );
+      props.setResources(updatedResourcesWithBenefit);
+    } else {
+      props.setResources(updatedResources);
     }
-
-    props.setResources(updatedResources);
+  
     props.onDowngrade();
   };
+  
 
   const removeImprovement = () => {
-    props.onRemove(); // Call the onRemove callback provided by the parent component
+    const matchingResource = props.improvement.resourceProduced?.type;
+  
+    const updatedResources = props.resources.map((resource) => {
+      const matchingCost = props.improvement.cost.find(
+        (cost) => cost.type === resource.type
+      );
+      if (matchingCost) {
+        let amountChange = matchingCost.amount; // Initialize amountChange with the cost amount
+        if (level > 1 && matchingResource) {
+          const matchingBenefit = props.improvement.resourceProduced;
+          if (matchingBenefit && matchingBenefit.type === matchingResource) {
+            amountChange -= matchingBenefit.amount * (level - 1); // Subtract the benefit based on the improvement level
+          }
+        }
+        return {
+          ...resource,
+          amount: resource.amount + amountChange, // Add the amountChange back
+        };
+      }
+      return resource;
+    });
+  
+    console.log('Updated Resources:', updatedResources);
+  
+    // Find the matching resource within removeImprovement
+    const resourceMatch = updatedResources.find(
+      (resource) => resource.type === matchingResource
+    );
+  
+    console.log('Resource Match:', resourceMatch);
+  
+    if (resourceMatch) {
+      let updatedResourcesWithBenefit = updatedResources;
+      if (matchingResource) {
+        updatedResourcesWithBenefit = updatedResources.map((resource) =>
+          resource.type === matchingResource
+            ? {
+                ...resource,
+                amount: Math.max(0, resource.amount - resourceMatch.amount),
+              }
+            : resource
+        );
+      }
+  
+      console.log('Updated Resources with Benefit Removed:', updatedResourcesWithBenefit);
+  
+      props.setResources(updatedResourcesWithBenefit);
+    } else {
+      props.setResources(updatedResources);
+    }
+  
+    props.onRemove();
   };
 
   return (
@@ -119,8 +209,12 @@ export function EditImprovementDialog(props: {
       </div>
       <div className="buttons-container">
         <button onClick={props.onClose}>Close</button>
-        <button onClick={upgradeImprovement} disabled={upgradeDisabled}>Upgrade</button>
-        <button onClick={downgradeImprovement} disabled={downgradeDisabled}>Downgrade</button>
+        <button onClick={upgradeImprovement} disabled={upgradeDisabled}>
+          Upgrade
+        </button>
+        <button onClick={downgradeImprovement} disabled={downgradeDisabled}>
+          Downgrade
+        </button>
         <button onClick={removeImprovement}>Remove</button>
       </div>
     </div>
