@@ -9,6 +9,7 @@ import { ImprovementCosts } from "./store/ImprovementsCost";
 import { Resource } from "./models/Improvement";
 import { Header } from "./components/Header";
 
+
 function App() {
   const [resources, setResources] = useState<Resource[]>([
     {

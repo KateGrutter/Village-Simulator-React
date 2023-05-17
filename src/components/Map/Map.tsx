@@ -5,6 +5,7 @@ import { AddImprovementDialog } from "./MapComponents/AddImprovementDialog";
 import { Tile } from "./MapComponents/Tile";
 import { TileData } from "../../models/Tile";
 import { Resource } from "../../models/Improvement";
+import Swal from 'sweetalert2'
 
 import { EditImprovementDialog } from "./MapComponents/EditImprovementDialog";
 
@@ -74,6 +75,8 @@ export function Map(props: { gridSize: number, handleResourceUpdate: (improvemen
       });
     } else {
       console.log("Insufficient resources to produce improvement");
+      Swal.fire('Insufficient resources to produce improvement')
+
     }
   };
 
