@@ -89,8 +89,9 @@ function App() {
   return (
     <div className="App">
       <div className="header"><Header></Header></div>
-      <Map gridSize={5} handleResourceUpdate={handleResourceUpdate} resources={resources} setResources={setResources} /> {/* Updated prop name */}
       <ResourceView resources={resources} />
+      <Map gridSize={5} handleResourceUpdate={handleResourceUpdate} resources={resources} setResources={setResources} /> {/* Updated prop name */}
+      
     </div>
   );
 }
