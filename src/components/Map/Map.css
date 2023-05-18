@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Averia+Serif+Libre:wght@300;700&display=swap');
+
 .gameboard {
   width: 400px;
   height: 400px;
@@ -132,7 +134,6 @@ p.levelNumber {
   width: 50%;
 }
 
-.resourceKey {
-  border: 1px solid #CAE3E3;
-  background-color: #CAE3E3;
+.swal2-styled.swal2-confirm {
+  background-color: #077187;
 }

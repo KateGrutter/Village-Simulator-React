@@ -12,6 +12,10 @@
 
 }
 
+* {
+  font-family: 'Averia Serif Libre', cursive;
+}
+
 .header {
   width: 100%;
   position: fixed;
@@ -20,6 +24,5 @@
   top: 0;
   display: flex;
   justify-content: center;
-  font-family: 'Averia Serif Libre', cursive;
   letter-spacing: .2rem;
 }
