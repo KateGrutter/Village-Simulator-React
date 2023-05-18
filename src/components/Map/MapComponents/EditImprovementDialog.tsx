@@ -100,7 +100,7 @@ export function EditImprovementDialog(props: {
       if (matchingCost) {
         return {
           ...resource,
-          amount: resource.amount + matchingCost.amount,
+          amount: resource.amount / matchingCost.amount,
         };
       }
       return resource;

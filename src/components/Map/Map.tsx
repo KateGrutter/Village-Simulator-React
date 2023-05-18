@@ -117,7 +117,7 @@ export function Map(props: { gridSize: number, handleResourceUpdate: (improvemen
                 key={tile.index}
                 onClick={() => handleTileClick(tile.rowIndex, tile.tileIndex)} // Call the handleTileClick function with the tile's row and tile index
               >
-                <Tile tile={tile} selectedTile={selectedTile} level={} />
+                <Tile tile={tile} selectedTile={selectedTile} />
               </div>
             ))}
           </div>
