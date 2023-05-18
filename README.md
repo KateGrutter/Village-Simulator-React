@@ -11,10 +11,7 @@ Village Sim is an interactive simulation game where your goal is to survive, and
 Create a React application that allows the user to build a village by placing improvements and consuming resources.
 
 ## Group Members
-Developed by Kate Grutter, Justin Green, and Desiree Cushing 
-@KateGrutter
-@jgreener6
-@descush
+Developed by [Kate Grutter](https://github.com/KateGrutter), [Justin Green](https://github.com/jgreener6), and [Desiree Cushing](https://github.com/descush)
 
 
 ## Technology
