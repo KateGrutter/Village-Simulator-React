@@ -53,6 +53,11 @@ li {
   list-style: none;
 }
 
+.add-p {
+  margin: 5px;
+  padding: 5px;
+}
+
 p.levelNumber {
   color: white;
   background-color: #077187;
@@ -82,8 +87,16 @@ p.levelNumber {
 .improvement-info {
   padding: 10px;
   display: flex;
-  align-items: row;
-  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+}
+
+.improve-txt {
+  margin: 0px;
+}
+
+.buttons-container {
+  display: flex;
 }
 
 .add-improvement-dialog,
@@ -99,7 +112,7 @@ p.levelNumber {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 50%;
+  width: 75%;
   height: 50%;
   top: 50%;
   left: 50%;

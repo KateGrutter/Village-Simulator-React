@@ -54,14 +54,16 @@ export function AddImprovementDialog(props: AddImprovementDialogProps) {
         </select>
         <div className="improvement-info">
           <div className="benefit">
-            Benefit{" "}
+            <h3>Benefit:</h3>
+            <p className="add-p">{" "}</p>
             {selectedImprovement ? selectedImprovement.resourceProduced?.amount : ""}{" "}
             {selectedImprovement ? selectedImprovement.resourceProduced?.type : ""}{" "}
           </div>
           <div className="cost">
-            Cost{" "}
+            <h3>Cost:</h3>
+            <p className="add-p">{" "}</p>
             {selectedImprovement?.cost.map((cost, index) => (
-              <li key={index}>
+              <li className="add-p" key={index}>
                 {cost.amount} {cost.type}
               </li>
             ))}

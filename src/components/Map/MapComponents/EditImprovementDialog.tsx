@@ -190,18 +190,21 @@ export function EditImprovementDialog(props: {
   return (
     <div className="editImprovementDialog">
       <div className="improvement-info">
-        <p>Type: {props.improvement.type}</p>
-        <p>Level: {level}</p>
-        <p>
-          Benefit: {resourceAmount} {props.improvement.resourceProduced?.type}
+        <h3 className="improve-txt">Type:</h3>
+        <p className="improve-txt">{props.improvement.type}</p>
+        <h3 className="improve-txt">Level:</h3>
+        <p className="improve-txt">{level}</p>
+        <h3 className="improve-txt">Benefit:</h3>
+        <p className="improve-txt">
+          {resourceAmount} {props.improvement.resourceProduced?.type}
         </p>
         <div>
-          Cost:
-          {props.improvement.cost.map((cost, index) => (
+          <h3 className="improve-txt">Cost:</h3>
+          <p className="improve-txt">{props.improvement.cost.map((cost, index) => (
             <li key={index}>
               {cost.amount} {cost.type}
             </li>
-          ))}
+          ))}</p>
         </div>
       </div>
       <div className="buttons-container">
