@@ -131,3 +131,8 @@ p.levelNumber {
 .item {
   width: 50%;
 }
+
+.resourceKey {
+  border: 1px solid #CAE3E3;
+  background-color: #CAE3E3;
+}

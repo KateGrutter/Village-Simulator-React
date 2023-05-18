@@ -4,6 +4,8 @@ import { useState } from 'react'
 import { ResourceLine } from './ResourceComponents/ResourceLine';
 import { Resource } from '../../models/Improvement';
 
+import './ResourceView.css'
+
 
 
 interface ResourceViewProps {
@@ -14,7 +16,7 @@ export function ResourceView(props: ResourceViewProps) {
   const { resources } = props;
 
   return (
-    <div>
+    <div className="resourceKey">
       <table>
         <thead>
           <tr>
