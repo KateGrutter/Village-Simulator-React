@@ -43,10 +43,11 @@
 }
 
 img {
-  width: 72px;
+  width: 65px;
   height: auto;
   position: absolute;
-  bottom: -5px;
+  bottom: 0px;
+  left: 5px;
 }
 
 li {
@@ -67,11 +68,11 @@ p.levelNumber {
   display: flex;
   justify-content: center;
   align-items: center;
-  top: -10px;
-  left: 5px;
+  top: -13px;
+  left: 60px;
   z-index: 9;
-  height: 15px;
-  width: 15px;
+  height: 13px;
+  width: 13px;
 }
 
 .button {
