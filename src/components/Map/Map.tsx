@@ -80,6 +80,34 @@ export function Map(props: { gridSize: number, handleResourceUpdate: (improvemen
     }
   };
 
+  const handleUpgrade = () => {
+    const improvement = selectedTile?.improvement;
+    if (improvement) {
+      setTiles((prevTiles) => {
+        const updatedTiles = [...prevTiles]; //update immutably with spread operators
+        updatedTiles[selectedTile!.rowIndex][selectedTile!.tileIndex].improvement = { //access specific tile to update via indexes
+          ...improvement,
+          level: improvement.level + 1, //increment level here
+        };
+        return updatedTiles;
+      })
+    }
+  };
+
+  const handleDowngrade = () => {
+    const improvement = selectedTile?.improvement;
+    if (improvement) {
+      setTiles((prevTiles) => {
+        const updatedTiles = [...prevTiles];
+        updatedTiles[selectedTile!.rowIndex][selectedTile!.tileIndex].improvement = {
+          ...improvement,
+          level: Math.max(improvement.level - 1, 1) //can't go below 1 (lower bound at end)
+        }
+        return updatedTiles;
+      })
+    }
+  };
+
   const handleRemoveImprovement = () => {
     const improvement = selectedTile?.improvement;
     if (improvement) {
@@ -142,8 +170,8 @@ export function Map(props: { gridSize: number, handleResourceUpdate: (improvemen
         // Render the EditImprovementDialog if a tile is selected and it has an improvement
         <EditImprovementDialog
           onClose={() => setSelectedTile(undefined)}
-          onUpgrade={() => { }}
-          onDowngrade={() => { }}
+          onUpgrade={handleUpgrade} //added the handle functions back to communicate between tile and editDialog
+          onDowngrade={handleDowngrade}
           onRemove={(handleRemoveImprovement)}
           improvement={selectedTile?.improvement}
           resources={props.resources}

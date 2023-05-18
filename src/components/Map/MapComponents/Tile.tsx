@@ -13,7 +13,6 @@ interface TileProps {
 
 
 export function Tile({ tile }: TileProps) {
-  //console.log('Rendering Tile:', tile);
   const hasImprovement = tile.improvement !== undefined;
 
   return (
@@ -21,7 +20,7 @@ export function Tile({ tile }: TileProps) {
       {hasImprovement && tile.improvement && (
         <div className="insideTile">
           <img src={tile.improvement.icon} alt="Improvement Icon" />
-          <p className="levelNumber"></p>
+          <p className="levelNumber">{tile.improvement.level}</p>
         </div>
       )}
     </div>

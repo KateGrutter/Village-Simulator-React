@@ -2,7 +2,7 @@ export interface Resource {
     type: string;
     amount: number;
     icon?: string;
-    
+
 }
 
 export interface Improvement {
@@ -11,5 +11,5 @@ export interface Improvement {
     icon: string;
     resourceProduced?: Resource;
     cost: Resource[]
-   
+
 }

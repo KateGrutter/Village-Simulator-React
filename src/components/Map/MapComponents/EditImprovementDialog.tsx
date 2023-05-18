@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Improvement, Resource } from "../../../models/Improvement";
 import { ImprovementCosts } from "../../../store/ImprovementsCost";
+import '../Map.css'
 
 export function EditImprovementDialog(props: {
   improvement: Improvement;
@@ -47,16 +48,14 @@ export function EditImprovementDialog(props: {
       return resource;
     });
 
-    setLevel((prevLevel) => prevLevel + 1); // Increase level
+    setLevel((prevLevel) => prevLevel + 1)
 
     const addBenefit = props.improvement.resourceProduced?.amount || 0;
 
-    // Find the matching resource
     const resourceMatch = updatedResources.find(
       (resource) => resource.type === props.improvement.resourceProduced?.type
     );
 
-    // Add the benefit to the matching resource
     if (resourceMatch) {
       const updatedResourceMatch = {
         ...resourceMatch,
@@ -78,7 +77,7 @@ export function EditImprovementDialog(props: {
   const downgradeImprovement = () => {
     if (level === 1) {
       setDowngradeDisabled(true);
-      return; // Cannot downgrade below level 1
+      return;
     }
 
     const enoughResources = props.improvement.cost.every((cost) => {
@@ -106,16 +105,14 @@ export function EditImprovementDialog(props: {
       return resource;
     });
 
-    setLevel((prevLevel) => prevLevel - 1); // Decrease level
+    setLevel((prevLevel) => prevLevel - 1);
 
     const removeBenefit = props.improvement.resourceProduced?.amount || 0;
 
-    // Find the matching resource
     const resourceMatch = updatedResources.find(
       (resource) => resource.type === props.improvement.resourceProduced?.type
     );
 
-    // Subtract the benefit from the matching resource
     if (resourceMatch) {
       const updatedResourceMatch = {
         ...resourceMatch,
@@ -218,6 +215,7 @@ export function EditImprovementDialog(props: {
         <button className="button" onClick={removeImprovement}>Remove</button>
       </div>
     </div>
+
   );
 }
 
