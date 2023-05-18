@@ -9,9 +9,11 @@ import { title } from "process";
 interface TileProps {
   tile: TileData;
   selectedTile: TileData | undefined;
+  level: Improvement | undefined
 }
 
-export function Tile({ tile }: TileProps) {
+
+export function Tile({ tile, level }: TileProps) {
   //console.log('Rendering Tile:', tile);
   const hasImprovement = tile.improvement !== undefined;
 
@@ -20,7 +22,7 @@ export function Tile({ tile }: TileProps) {
       {hasImprovement && tile.improvement && (
         <div className="insideTile">
           <img src={tile.improvement.icon} alt="Improvement Icon" />
-          <p className="levelNumber">{tile.improvement?.level}</p>
+          <p className="levelNumber">{level?.level}</p>
         </div>
       )}
     </div>
