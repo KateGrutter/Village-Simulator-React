@@ -208,14 +208,14 @@ export function EditImprovementDialog(props: {
         </div>
       </div>
       <div className="buttons-container">
-        <button onClick={props.onClose}>Close</button>
-        <button onClick={upgradeImprovement} disabled={upgradeDisabled}>
+        <button className="button" onClick={props.onClose}>Close</button>
+        <button className="button" onClick={upgradeImprovement} disabled={upgradeDisabled}>
           Upgrade
         </button>
-        <button onClick={downgradeImprovement} disabled={downgradeDisabled}>
+        <button className="button" onClick={downgradeImprovement} disabled={downgradeDisabled}>
           Downgrade
         </button>
-        <button onClick={removeImprovement}>Remove</button>
+        <button className="button" onClick={removeImprovement}>Remove</button>
       </div>
     </div>
   );

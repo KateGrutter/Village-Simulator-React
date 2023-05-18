@@ -74,6 +74,7 @@ p.levelNumber {
   border-radius: 5px;
   background-color: #077187;
   color: white;
+  white-space: nowrap;
 }
 
 .improvement-info {
