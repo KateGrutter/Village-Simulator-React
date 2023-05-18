@@ -27,13 +27,13 @@ export function EditImprovementDialog(props: {
       );
       return matchingResource && matchingResource.amount >= cost.amount;
     });
-  
+
     if (!enoughResources) {
       setUpgradeDisabled(true);
       console.log('Not enough resources to upgrade improvement');
       return;
     }
-  
+
     const updatedResources = props.resources.map((resource) => {
       const matchingCost = props.improvement.cost.find(
         (cost) => cost.type === resource.type
@@ -46,16 +46,16 @@ export function EditImprovementDialog(props: {
       }
       return resource;
     });
-  
+
     setLevel((prevLevel) => prevLevel + 1); // Increase level
-  
+
     const addBenefit = props.improvement.resourceProduced?.amount || 0;
-  
+
     // Find the matching resource
     const resourceMatch = updatedResources.find(
       (resource) => resource.type === props.improvement.resourceProduced?.type
     );
-  
+
     // Add the benefit to the matching resource
     if (resourceMatch) {
       const updatedResourceMatch = {
@@ -71,7 +71,7 @@ export function EditImprovementDialog(props: {
     } else {
       props.setResources(updatedResources);
     }
-  
+
     props.onUpgrade();
   };
 
@@ -80,19 +80,19 @@ export function EditImprovementDialog(props: {
       setDowngradeDisabled(true);
       return; // Cannot downgrade below level 1
     }
-  
+
     const enoughResources = props.improvement.cost.every((cost) => {
       const matchingResource = props.resources.find(
         (resource) => resource.type === cost.type
       );
       return matchingResource && matchingResource.amount >= cost.amount;
     });
-  
+
     if (!enoughResources) {
       console.log('Not enough resources to upgrade improvement');
       return;
     }
-  
+
     const updatedResources = props.resources.map((resource) => {
       const matchingCost = props.improvement.cost.find(
         (cost) => cost.type === resource.type
@@ -105,16 +105,16 @@ export function EditImprovementDialog(props: {
       }
       return resource;
     });
-  
+
     setLevel((prevLevel) => prevLevel - 1); // Decrease level
-  
+
     const removeBenefit = props.improvement.resourceProduced?.amount || 0;
-  
+
     // Find the matching resource
     const resourceMatch = updatedResources.find(
       (resource) => resource.type === props.improvement.resourceProduced?.type
     );
-  
+
     // Subtract the benefit from the matching resource
     if (resourceMatch) {
       const updatedResourceMatch = {
@@ -130,14 +130,14 @@ export function EditImprovementDialog(props: {
     } else {
       props.setResources(updatedResources);
     }
-  
+
     props.onDowngrade();
   };
-  
+
 
   const removeImprovement = () => {
     const matchingResource = props.improvement.resourceProduced?.type;
-  
+
     const updatedResources = props.resources.map((resource) => {
       const matchingCost = props.improvement.cost.find(
         (cost) => cost.type === resource.type
@@ -157,36 +157,36 @@ export function EditImprovementDialog(props: {
       }
       return resource;
     });
-  
+
     console.log('Updated Resources:', updatedResources);
-  
+
     // Find the matching resource within removeImprovement
     const resourceMatch = updatedResources.find(
       (resource) => resource.type === matchingResource
     );
-  
+
     console.log('Resource Match:', resourceMatch);
-  
+
     if (resourceMatch) {
       let updatedResourcesWithBenefit = updatedResources;
       if (matchingResource) {
         updatedResourcesWithBenefit = updatedResources.map((resource) =>
           resource.type === matchingResource
             ? {
-                ...resource,
-                amount: Math.max(0, resource.amount - resourceMatch.amount),
-              }
+              ...resource,
+              amount: Math.max(0, resource.amount - resourceMatch.amount),
+            }
             : resource
         );
       }
-  
+
       console.log('Updated Resources with Benefit Removed:', updatedResourcesWithBenefit);
-  
+
       props.setResources(updatedResourcesWithBenefit);
     } else {
       props.setResources(updatedResources);
     }
-  
+
     props.onRemove();
   };
 

@@ -3,6 +3,7 @@ import { Improvement } from "../../../models/Improvement";
 import { ImprovementCosts } from "../../../store/ImprovementsCost";
 import { TileData } from "../../../models/Tile";
 import { Tile } from "./Tile";
+import './AddImprovement.css';
 
 interface AddImprovementDialogProps {
   onClose: (improvement?: Improvement) => void;
