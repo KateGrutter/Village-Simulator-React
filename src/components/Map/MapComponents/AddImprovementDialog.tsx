@@ -3,7 +3,7 @@ import { Improvement } from "../../../models/Improvement";
 import { ImprovementCosts } from "../../../store/ImprovementsCost";
 import { TileData } from "../../../models/Tile";
 import { Tile } from "./Tile";
-import './AddImprovement.css';
+import '../Map.css';
 
 interface AddImprovementDialogProps {
   onClose: (improvement?: Improvement) => void;
@@ -34,7 +34,7 @@ export function AddImprovementDialog(props: AddImprovementDialogProps) {
     <div className="add-improvement-dialog">
 
       <form onSubmit={handleAdd}>
-        <select
+        <select className="item"
           onChange={(e) =>
             setSelectedImprovement(
               ImprovementCosts.find(
@@ -52,23 +52,26 @@ export function AddImprovementDialog(props: AddImprovementDialogProps) {
             </option>
           ))}
         </select>
-        <div>
-          Benefit{" "}
-          {selectedImprovement ? selectedImprovement.resourceProduced?.amount : ""}{" "}
-          {selectedImprovement ? selectedImprovement.resourceProduced?.type : ""}{" "}
+        <div className="improvement-info">
+          <div className="benefit">
+            Benefit{" "}
+            {selectedImprovement ? selectedImprovement.resourceProduced?.amount : ""}{" "}
+            {selectedImprovement ? selectedImprovement.resourceProduced?.type : ""}{" "}
+          </div>
+          <div className="cost">
+            Cost{" "}
+            {selectedImprovement?.cost.map((cost, index) => (
+              <li key={index}>
+                {cost.amount} {cost.type}
+              </li>
+            ))}
+          </div>
         </div>
-        <div>
-          Cost{" "}
-          {selectedImprovement?.cost.map((cost, index) => (
-            <li key={index}>
-              {cost.amount} {cost.type}
-            </li>
-          ))}
-        </div>
-        <button type="button" onClick={handleCancel}>
+
+        <button className="button" type="button" onClick={handleCancel}>
           Cancel
         </button>
-        <button type="submit">Add</button>
+        <button className="button" type="submit">Add</button>
       </form>
     </div>
   );

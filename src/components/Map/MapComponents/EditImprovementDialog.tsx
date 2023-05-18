@@ -191,7 +191,7 @@ export function EditImprovementDialog(props: {
   };
 
   return (
-    <div>
+    <div className="editImprovementDialog">
       <div className="improvement-info">
         <p>Type: {props.improvement.type}</p>
         <p>Level: {level}</p>
